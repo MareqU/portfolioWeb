@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Marek Urbaník — QA & Test Automation Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">MU / Test Automation</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#blog">Blog</a></li>
+  </ul>
+  <a class="nav-cta" href="#contact">Hire me</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home" style="padding: 0; padding-top: 80px;">
+  <div class="hero-left">
+    <div class="availability fade-up delay-1">
+      <div class="avail-dot"></div>
+      Available for freelance projects
+    </div>
+
+    <!-- <div class="hero-tag fade-up delay-1">QA &amp; Test Automation Engineer</div> -->
+
+    <h1 class="hero-name fade-up delay-2">
+      Marek<br/><em>Urbaník</em>
+    </h1>
+
+    <!-- <p class="hero-title fade-up delay-3">Cypress · Playwright · TypeScript · CI/CD</p> -->
+
+    <p class="hero-desc fade-up delay-4">
+      Good test automation isn't just working tests — it's a codebase someone else can open and understand. 
+      I build frameworks with clean architecture: layered structure, reusable components, zero magic,
+      so your team owns it long after I'm done.
+    </p>
+
+    <div class="hero-actions fade-up delay-5">
+      <a class="btn-primary" href="#projects">View my work</a>
+      <a class="btn-secondary" href="#contact">Get in touch</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="hero-photo-wrap">
+      <div class="hero-photo-frame">
+        <img 
+          src="https://static.wixstatic.com/media/036c36_3ef06c0978784e72afc0d6ca0b6b6b25~mv2.jpg/v1/fill/w_391,h_397,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/036c36_3ef06c0978784e72afc0d6ca0b6b6b25~mv2.jpg" 
+          alt="Marek Urbaník"
+        />
+      </div>
+      <div class="hero-photo-accent"></div>
+      <div class="hero-stats">
+        <div class="hero-stats-num">3+</div>
+        <div class="hero-stats-label">Years in QA</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    Scroll to explore
+  </div> -->
+
+  <!-- TICKER -->
+  <div class="stack-ticker">
+    <div class="ticker-track" id="ticker"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-header">
+    <div>
+      <div class="section-num">01 — About</div>
+      <h2 class="section-title">Who I am</h2>
+    </div>
+    <a class="section-link" href="https://www.linkedin.com/in/marek-urban%C3%ADk-software-testing/" target="_blank">LinkedIn</a>
+  </div>
+
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm a <strong>QA & Test Automation Engineer</strong> based in Prague, currently working as a freelancer on project for PVZP  (a Czech insurance company) where I design and maintain automation frameworks for complex internal system and onther web applications. Alongside that, I take on <strong>freelance engagements</strong> for clients who need their software to actually work.
+      </p>
+      <!-- <p>
+        My journey started with manual testing of <strong>SAP EWM at Kaufland</strong>. I quickly realised that the real leverage is in automation — frameworks that scale, pipelines that gate deployments, and test strategies that give engineering teams real confidence.
+      </p> -->
+      <p>
+        I work primarily in <strong>JavaScript and TypeScript, writing Cypress and Playwright test suites with Page Object Model patterns, API testing layers, and GitLab CI/CD integration</strong>. I care deeply about test architecture — not just writing tests, but building systems that stay <strong>maintainable</strong>.
+      </p>
+      <p>
+        I'm currently exploring <strong>cybersecurity</strong> — understanding how it works and eager to expand my automation frameworks with <strong>security testing</strong> practices.
+      </p>
+    </div>
+
+    <div class="about-sidebar">
+      <div class="about-fact">
+        <div class="about-fact-label">Location</div>
+        <div class="about-fact-value">Prague, Czech Republic</div>
+      </div>
+      <div class="about-fact">
+        <div class="about-fact-label">Availability</div>
+        <div class="about-fact-value">Available · up to 20h/week</div>
+      </div>
+      <div class="about-fact">
+        <div class="about-fact-label">GitHub</div>
+        <div class="about-fact-value"><a href="https://github.com/MareqU" target="_blank">github.com/MareqU</a></div>
+      </div>
+      <div class="about-fact">
+        <div class="about-fact-label">Languages</div>
+        <div class="about-fact-value">Czech, Slovak, English (B1)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section id="stack" class="stack-section">
+  <div class="section-header">
+    <div>
+      <div class="section-num">02 — Stack</div>
+      <h2 class="section-title">Tools &amp; Technologies</h2>
+    </div>
+  </div>
+
+  <div class="stack-grid">
+    <div class="stack-card">
+      <div class="stack-card-icon">[cy]</div>
+      <div class="stack-card-name">Cypress</div>
+      <div class="stack-card-desc">E2E and API testing for web applications. Custom commands, Page Object Model architecture, API intercept and CI/CD integration.</div>
+      <div class="stack-card-tag">Primary</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-card-icon">[pw]</div>
+      <div class="stack-card-name">Playwright</div>
+      <div class="stack-card-desc">Cross-browser E2E and API testing. Fixtures, request context for direct API calls, serial mode for dependent test flows, and multi-layer test architecture.</div>
+      <div class="stack-card-tag">Primary</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-card-icon">[ts]</div>
+      <div class="stack-card-name">TypeScript</div>
+      <div class="stack-card-desc">Type-safe test code and utilities. Strong typing for page objects, test data, and API models.</div>
+      <div class="stack-card-tag">Primary</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-card-icon">[gl]</div>
+      <div class="stack-card-name">GitLab CI/CD</div>
+      <div class="stack-card-desc">Pipeline configuration, test stage gating, and environment management.</div>
+      <div class="stack-card-tag">Primary</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-card-icon">[nd]</div>
+      <div class="stack-card-name">Node.js</div>
+      <div class="stack-card-desc">Custom tooling, test utilities, and server-side scripts — including Telegram bot integrations and API wrappers.</div>
+      <div class="stack-card-tag">Core</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-card-icon">[pm]</div>
+      <div class="stack-card-name">Postman / REST</div>
+      <div class="stack-card-desc">API contract testing, manual exploration.</div>
+      <div class="stack-card-tag">Core</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-card-icon">[dk]</div>
+      <div class="stack-card-name">Docker</div>
+      <div class="stack-card-desc">Containerised test environments, consistent CI execution, and isolated service configurations.</div>
+      <div class="stack-card-tag">Core</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-card-icon">[lx]</div>
+      <div class="stack-card-name">Linux / Git</div>
+      <div class="stack-card-desc">Command-line fluency for dev workflows, environment setup, and version control hygiene.</div>
+      <div class="stack-card-tag">Core</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" style="background: var(--bg);">
+  <div class="section-header">
+    <div>
+      <div class="section-num">03 — Projects</div>
+      <h2 class="section-title">Selected Work</h2>
+    </div>
+    <a class="section-link" href="https://github.com/MareqU" target="_blank">All on GitHub</a>
+  </div>
+
+  <div class="projects-grid">
+    <a class="project-card" href="https://github.com/MareqU/realworld-app" target="_blank">
+      <div class="project-card-header">
+        <div class="project-num">01</div>
+        <div class="project-arrow">↗</div>
+      </div>
+      <div class="project-title">Migration Cypress Real‑World App to Playwright</div>
+      <div class="project-desc">
+        Forked the official Cypress Real-World App — a full-stack TypeScript payment application — to demonstrate migration from Cypress to Playwright. Rewriting E2E tests to leverage Playwright's fixtures, request context for API testing, and cross-browser execution on the same real-world codebase.
+        Still working on it. ;)
+      </div>
+      <div class="project-tags">
+        <span class="tag accent">Cypress</span>
+        <span class="tag blue">Playwright</span>
+        <span class="tag orange">TypeScript</span>
+        <span class="tag">React</span>
+        <span class="tag">Next.js</span>
+      </div>
+    </a>
+
+    <div class="project-card" style="cursor: default;">
+      <div class="project-card-header">
+        <div class="project-num">02</div>
+      </div>
+      <div class="project-title">PVZP Cypress Automation</div>
+      <div class="project-desc">
+        Automation framework for a Czech insurance company. Built with Page Object Model architecture, JavaScript, and GitLab CI/CD integration. Covers E2E flows, API intercept, and custom business logic validation across core features.
+      </div>
+      <div class="project-tags">
+        <span class="tag accent">Cypress</span>
+        <span class="tag orange">TypeScript</span>
+        <span class="tag blue">GitLab CI</span>
+        <span class="tag">POM</span>
+        <span class="tag">API Intercept</span>
+      </div>
+    </div>
+
+    <a class="project-card" href="https://github.com/MareqU/test-dashboard" target="_blank">
+      <div class="project-card-header">
+        <div class="project-num">03</div>
+        <div class="project-arrow">↗</div>
+      </div>
+      <div class="project-title">Test Dashboard</div>
+      <div class="project-desc">
+        A small personal project built to deepen my understanding of backend development. A JavaScript dashboard that aggregates and visualises test run results — stepping outside QA into server-side code to become a more well-rounded engineer..
+      </div>
+      <div class="project-tags">
+        <span class="tag orange">JavaScript</span>
+        <span class="tag accent">MongoDB</span>
+        <span class="tag blue">Express.js</span>
+        <span class="tag">Reporting</span>
+        <span class="tag">Test Analytics</span>
+      </div>
+    </a>
+
+    <a class="project-card" href="https://github.com/MareqU/chatApp" target="_blank">
+      <div class="project-card-header">
+        <div class="project-num">04</div>
+        <div class="project-arrow">↗</div>
+      </div>
+      <div class="project-title">Chat Application</div>
+      <div class="project-desc">
+        Full-stack JavaScript chat application — a personal project exploring real-time communication with WebSockets. Demonstrates initiative beyond QA scope: understanding how applications are built helps build better tests for them.
+      </div>
+      <div class="project-tags">
+        <span class="tag orange">JavaScript</span>
+        <span class="tag accent">Node.js</span>
+        <span class="tag blue">WebSockets</span>
+        <span class="tag">Full-stack</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="services-section">
+  <div class="section-header">
+    <div>
+      <div class="section-num">04 — Services</div>
+      <h2 class="section-title">What I offer</h2>
+    </div>
+    <a class="section-link" href="#contact">Let's talk</a>
+  </div>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01</div>
+      <div class="service-name">Test Automation Framework</div>
+      <div class="service-desc">I design and build test automation architectures from scratch — or rescue existing ones.</div>
+      <ul class="service-bullets">
+        <li>E2E test suite design</li>
+        <li>Sustainable test automation frameworks</li>
+        <li>GitLab / GitHub CI integration</li>
+        <li>Test reporting setup</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">02</div>
+      <div class="service-name">Manual QA & Bug Reporting</div>
+      <div class="service-desc">Not every bug needs an automated test to find it first. I bring a structured manual testing approach — exploratory sessions, edge case hunting, and clear bug reports that developers actually want to read.</div>
+      <ul class="service-bullets">
+        <li>Exploratory & regression testing</li>
+        <li>Structured bug reports with reproduction steps</li>
+        <li>Test case design & documentation</li>
+        <li>UAT support & sign-off</li>
+      </ul>
+    </div>
+
+    <div class="service-card">
+      <div class="service-num">03</div>
+      <div class="service-name">QA Audit &amp; Consultation</div>
+      <div class="service-desc">Not sure where your QA gaps are? I'll review your current testing strategy, identify risks, and give you a clear roadmap with prioritised recommendations.</div>
+      <ul class="service-bullets">
+        <li>Test strategy review</li>
+        <li>Coverage gap analysis</li>
+        <li>Tool selection advice</li>
+        <li>Risk-based test planning</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<!-- <section id="blog" class="blog-section">
+  <div class="section-header">
+    <div>
+      <div class="section-num">05 — Blog</div>
+      <h2 class="section-title">Coming soon</h2>
+    </div>
+  </div>
+
+  <div class="blog-grid">
+    <div class="blog-card">
+      <div class="blog-date">Coming soon</div>
+      <div class="blog-tag">Cypress</div>
+      <div class="blog-title">Why cy.request() bypasses cy.intercept() — and what to do about it</div>
+      <div class="blog-reading-time">6 min read</div>
+    </div>
+    <div class="blog-card">
+      <div class="blog-date">Coming soon</div>
+      <div class="blog-tag">Architecture</div>
+      <div class="blog-title">Building a correlation ID capture utility for API header tracing in Cypress</div>
+      <div class="blog-reading-time">8 min read</div>
+    </div>
+    <div class="blog-card">
+      <div class="blog-date">Coming soon</div>
+      <div class="blog-tag">Playwright</div>
+      <div class="blog-title">Cypress vs Playwright in 2025: a practitioner's honest comparison</div>
+      <div class="blog-reading-time">10 min read</div>
+    </div>
+  </div>
+</section> -->
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-eyebrow">06 — Contact</div>
+  <h2 class="contact-headline">Let's build<br/><em>quality</em> together</h2>
+  <p class="contact-sub">Available for freelance projects, audits, and long-term engagements.</p>
+
+  <div class="contact-links">
+    <a class="contact-item" href="mailto:marekurbanik@icloud.com">
+      <span>✉</span> marekurbanik@icloud.com
+    </a>
+    <a class="contact-item" href="tel:+420739047946">
+      <span>☎</span> +420 739 047 946
+    </a>
+    <a class="contact-item" href="https://www.linkedin.com/in/marek-urban%C3%ADk-software-testing/" target="_blank">
+      <span>in</span> LinkedIn
+    </a>
+    <a class="contact-item" href="https://github.com/MareqU" target="_blank">
+      <span>gh</span> GitHub
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-left">© 2026 Marek Urbaník — QA Engineer, Prague</div>
+  <div class="footer-right">Built with <span>precision</span> · Available for hire</div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
