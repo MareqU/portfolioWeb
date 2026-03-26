@@ -27,7 +27,7 @@ document.querySelectorAll('a, button, .project-card, .service-card, .stack-card'
 });
 
 // Stack ticker
-const items = ['Cypress', 'Playwright', 'TypeScript', 'Node.js', 'GitLab CI/CD', 'Postman', 'Docker', 'Linux', 'REST APIs', 'Page Object Model', 'E2E Testing', 'API Intercept', 'Test Automation'];
+const items = ['Cypress', 'Playwright', 'TypeScript', 'Node.js', 'GitLab CI/CD', 'Postman', 'MongoDB', 'Linux', 'REST APIs', 'Page Object Model', 'E2E Testing', 'API Intercept', 'Test Automation'];
 const ticker = document.getElementById('ticker');
 const all = [...items, ...items]; // duplicate for seamless loop
 ticker.innerHTML = all.map(i => `<span class="ticker-item"><span class="ticker-dot"></span>${i}</span>`).join('');
