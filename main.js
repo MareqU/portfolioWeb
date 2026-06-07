@@ -29,8 +29,28 @@ document.querySelectorAll('a, button, .project-card, .service-card, .stack-card'
 // Stack ticker
 const items = ['Cypress', 'Playwright', 'TypeScript', 'JavaScript','Node.js', 'GitLab CI/CD', 'Postman', 'MongoDB', 'Linux', 'REST APIs', 'Page Object Model', 'E2E Testing', 'API Intercept', 'Test Automation', 'Integration Testing'];
 const ticker = document.getElementById('ticker');
-const all = [...items, ...items]; // duplicate for seamless loop
-ticker.innerHTML = all.map(i => `<span class="ticker-item"><span class="ticker-dot"></span>${i}</span>`).join('');
+if (ticker) {
+  const all = [...items, ...items];
+  ticker.innerHTML = all.map(i => `<span class="ticker-item"><span class="ticker-dot"></span>${i}</span>`).join('');
+}
+
+// Mobile nav
+const burger = document.getElementById('navBurger');
+const mobileNav = document.getElementById('navMobile');
+if (burger && mobileNav) {
+  burger.addEventListener('click', () => {
+    burger.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+  });
+  mobileNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      burger.classList.remove('open');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+}
 
 // Intersection observer for fade-in on scroll
 const observer = new IntersectionObserver((entries) => {
