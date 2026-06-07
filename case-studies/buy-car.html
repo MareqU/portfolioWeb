@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI Car Research Agent — Marek Urbaník</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../styles.css"/>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a class="nav-logo" href="../">MU / Test Automation</a>
+  <ul class="nav-links">
+    <li><a href="../#about">About</a></li>
+    <li><a href="../#stack">Stack</a></li>
+    <li><a href="../#projects">Projects</a></li>
+    <li><a href="../#services">Services</a></li>
+    <li><a href="./">Case Studies</a></li>
+  </ul>
+  <a class="nav-cta" href="../#contact">Hire me</a>
+  <button class="nav-burger" id="navBurger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="nav-mobile" id="navMobile">
+  <a href="../#about">About</a>
+  <a href="../#stack">Stack</a>
+  <a href="../#projects">Projects</a>
+  <a href="./">Case Studies</a>
+  <a href="../#services">Services</a>
+  <a href="../#contact" class="nav-mobile-cta">Hire me</a>
+</div>
+
+<!-- HERO -->
+<section class="cs-detail-hero">
+  <a class="cs-back" href="./">← Case Studies</a>
+  <div class="cs-detail-eyebrow">Case Study — 02</div>
+  <h1 class="cs-detail-title">AI Car Research<br/><em>Agent</em></h1>
+  <p class="cs-detail-lead">
+    A Claude Code agent that automates used car research across Czech automotive portals — browsing listings,
+    evaluating engine reliability, checking service history indicators, and generating structured
+    buy / reconsider / avoid reports for every car it analyzes.
+  </p>
+  <div class="cs-detail-meta">
+    <div class="cs-meta-item">
+      <div class="cs-meta-label">Type</div>
+      <div class="cs-meta-value">Personal project</div>
+    </div>
+    <div class="cs-meta-item">
+      <div class="cs-meta-label">Stack</div>
+      <div class="cs-meta-value">Claude Code · Playwright MCP</div>
+    </div>
+    <div class="cs-meta-item">
+      <div class="cs-meta-label">Portals</div>
+      <div class="cs-meta-value">Sauto · AAA Auto · Auto ESA</div>
+    </div>
+    <div class="cs-meta-item">
+      <div class="cs-meta-label">Output</div>
+      <div class="cs-meta-value">Markdown reports</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section class="cs-detail-content">
+  <div class="case-grid">
+
+    <div class="case-main">
+
+      <div class="case-block">
+        <div class="case-block-label">The Problem</div>
+        <p class="case-block-text">Buying a reliable used family car in the Czech Republic means browsing multiple portals, cross-referencing engine reliability data, evaluating service histories, and applying consistent criteria across dozens of listings. Done manually, this easily takes tens of hours — and the evaluation quality varies depending on how tired you are by listing number forty.</p>
+        <p class="case-block-text">The harder problem is consistency. Every listing needs the same questions answered: Is this engine known to be reliable? Are there red flags in the service history? Does it meet family requirements? Without a structured protocol, important details get missed.</p>
+      </div>
+
+      <div class="case-block">
+        <div class="case-block-label">The Approach</div>
+        <p class="case-block-text">A Claude Code agent with Playwright MCP as its browser — giving it the ability to navigate real automotive websites, extract listing details, and research reliability data from across the web. The agent follows a fixed evaluation protocol for every car, producing comparable reports regardless of the portal or model.</p>
+        <p class="case-block-text">Two modes of operation: analyze a specific listing URL on demand (Task A), or run an active search across all three portals with defined filters and pull the best matches automatically (Task B).</p>
+      </div>
+
+      <div class="case-block">
+        <div class="case-block-label">How the Agent Works</div>
+        <div class="case-steps">
+          <div class="case-step">
+            <div class="case-step-num">01</div>
+            <div class="case-step-body">
+              <div class="case-step-title">Portal Navigation</div>
+              <p>The agent opens Sauto, AAA Auto, or Auto ESA with the defined filters — brand, year range, max mileage, price ceiling, fuel type, and transmission — then works through the results page by page.</p>
+            </div>
+          </div>
+          <div class="case-step">
+            <div class="case-step-num">02</div>
+            <div class="case-step-body">
+              <div class="case-step-title">Listing Extraction</div>
+              <p>For each candidate, the agent reads all available details: model, year, engine variant, mileage, price, seller type (dealer vs. private), service history notes, and any listed extras or damage history.</p>
+            </div>
+          </div>
+          <div class="case-step">
+            <div class="case-step-num">03</div>
+            <div class="case-step-body">
+              <div class="case-step-title">Engine Reliability Research</div>
+              <p>The agent evaluates the specific engine variant against known reliability data — distinguishing between problematic units (1.2 TSI chain issues, 1.4 TSI carbon buildup) and more dependable options (1.6 MPI, 1.5 TSI evo). Each engine gets a reliability note in the report.</p>
+            </div>
+          </div>
+          <div class="case-step">
+            <div class="case-step-num">04</div>
+            <div class="case-step-body">
+              <div class="case-step-title">Family Suitability Check</div>
+              <p>Every car is evaluated against a fixed checklist: rear ISOFIX points, boot capacity, Euro NCAP safety rating, and practical family usability — rear legroom, number of seats, and child-seat compatibility.</p>
+            </div>
+          </div>
+          <div class="case-step">
+            <div class="case-step-num">05</div>
+            <div class="case-step-body">
+              <div class="case-step-title">Report Generation</div>
+              <p>The agent writes a structured Markdown file for each car: basic info, service history assessment, reliability verdict, family checklist, red flags, and a final recommendation — Buy, Reconsider, or Avoid.</p>
+            </div>
+          </div>
+          <div class="case-step">
+            <div class="case-step-num">06</div>
+            <div class="case-step-body">
+              <div class="case-step-title">Summary &amp; Ranking</div>
+              <p>After all cars are processed, the agent compiles a <code>vysledky.md</code> summary — a comparison table ranked by suitability score with top picks highlighted and pre-visit guidance for the buyer.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-block">
+        <div class="case-block-label">Output Format</div>
+        <ul class="case-list">
+          <li><strong>Per-car report</strong> — one Markdown file per listing, named <code>auto_[Model]_[Year]_[km].md</code></li>
+          <li><strong>Basic info table</strong> — model, year, engine, mileage, price, seller type</li>
+          <li><strong>Service history assessment</strong> — available records, gaps, known issues</li>
+          <li><strong>Engine reliability note</strong> — variant-specific known issues and expected longevity</li>
+          <li><strong>Family suitability checklist</strong> — ISOFIX, boot size, NCAP, legroom</li>
+          <li><strong>Red flags</strong> — anything that warrants caution or further inspection</li>
+          <li><strong>Verdict</strong> — Buy / Reconsider / Avoid with reasoning</li>
+          <li><strong>Summary file</strong> — ranked comparison table across all analyzed cars</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="case-sidebar">
+      <div class="case-sidebar-card">
+        <div class="case-block-label">Stack</div>
+        <div class="case-sidebar-tags">
+          <span class="tag accent">Claude Code</span>
+          <span class="tag blue">Playwright MCP</span>
+          <span class="tag orange">AI Agent</span>
+          <span class="tag">Markdown</span>
+        </div>
+      </div>
+
+      <div class="case-sidebar-card">
+        <div class="case-block-label">Key Outcomes</div>
+        <ul class="case-sidebar-list">
+          <li>Consistent evaluation across all listings</li>
+          <li>Engine-specific reliability notes</li>
+          <li>Ranked shortlist with verdicts</li>
+          <li>Hours of manual research automated</li>
+        </ul>
+      </div>
+
+      <div class="case-sidebar-card">
+        <div class="case-block-label">Portals Covered</div>
+        <ul class="case-sidebar-list">
+          <li>Sauto.cz</li>
+          <li>AAA Auto</li>
+          <li>Auto ESA</li>
+        </ul>
+      </div>
+
+      <div class="case-sidebar-card">
+        <div class="case-block-label">Repository</div>
+        <a class="case-link" href="https://github.com/MareqU/carResearch" target="_blank">github.com/MareqU/carResearch ↗</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">© 2026 Marek Urbaník — QA Engineer, Prague</div>
+  <div class="footer-right">Built with <span>precision</span> · Available for hire</div>
+</footer>
+
+<script src="../main.js"></script>
+</body>
+</html>
