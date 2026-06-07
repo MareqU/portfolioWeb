@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AI-Powered Playwright Test Framework — Marek Urbaník</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="../styles.css"/>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav>
+  <a class="nav-logo" href="../">MU / Test Automation</a>
+  <ul class="nav-links">
+    <li><a href="../#about">About</a></li>
+    <li><a href="../#stack">Stack</a></li>
+    <li><a href="../#projects">Projects</a></li>
+    <li><a href="../#services">Services</a></li>
+    <li><a href="./">Case Studies</a></li>
+  </ul>
+  <a class="nav-cta" href="../#contact">Hire me</a>
+</nav>
+
+<!-- HERO -->
+<section class="cs-detail-hero">
+  <a class="cs-back" href="./">← Case Studies</a>
+  <div class="cs-detail-eyebrow">Case Study — 01</div>
+  <h1 class="cs-detail-title">AI-Powered Playwright<br/><em>Test Framework</em></h1>
+  <p class="cs-detail-lead">
+    A Playwright test framework where an autonomous AI agent is a first-class citizen of the QA workflow —
+    mapping existing coverage, navigating the live app, generating test cases for uncovered flows, and
+    deduplicating them semantically before they reach the test management system.
+  </p>
+  <div class="cs-detail-meta">
+    <div class="cs-meta-item">
+      <div class="cs-meta-label">Type</div>
+      <div class="cs-meta-value">Personal project</div>
+    </div>
+    <div class="cs-meta-item">
+      <div class="cs-meta-label">Stack</div>
+      <div class="cs-meta-value">Playwright · TypeScript · AI Agents</div>
+    </div>
+    <div class="cs-meta-item">
+      <div class="cs-meta-label">CI/CD</div>
+      <div class="cs-meta-value">GitHub Actions</div>
+    </div>
+    <div class="cs-meta-item">
+      <div class="cs-meta-label">TMS</div>
+      <div class="cs-meta-value">Qase</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<section class="cs-detail-content">
+  <div class="case-grid">
+
+    <div class="case-main">
+
+      <div class="case-block">
+        <div class="case-block-label">The Problem</div>
+        <p class="case-block-text">Manual test coverage drifts. As features ship, new flows emerge that aren't covered by existing suites — and finding those gaps requires constantly auditing both the live application and the test code. At scale, this is impossible to maintain by hand without dedicated tooling.</p>
+        <p class="case-block-text">Beyond discovery, there's a duplication problem: test management systems accumulate semantically identical entries written by different people at different times. "Login with valid credentials" and "should login successfully" describe the same test — but without deduplication, both end up in the backlog.</p>
+      </div>
+
+      <div class="case-block">
+        <div class="case-block-label">The Approach</div>
+        <p class="case-block-text">An AI agent integrated directly into the QA workflow. Rather than replacing human-written tests, the agent works alongside them — extending coverage autonomously while conforming to the same framework conventions the human tests follow.</p>
+        <p class="case-block-text">The result is a self-extending test suite where human-written and AI-generated tests coexist without noise. The agent handles discovery and generation; the framework handles execution; Qase TMS holds the ground truth.</p>
+      </div>
+
+      <div class="case-block">
+        <div class="case-block-label">How the Agent Works</div>
+        <div class="case-steps">
+          <div class="case-step">
+            <div class="case-step-num">01</div>
+            <div class="case-step-body">
+              <div class="case-step-title">Coverage Mapping</div>
+              <p>The agent parses all existing spec files and extracts the flows that are already covered — building a structured map of what the suite currently tests.</p>
+            </div>
+          </div>
+          <div class="case-step">
+            <div class="case-step-num">02</div>
+            <div class="case-step-body">
+              <div class="case-step-title">App Exploration</div>
+              <p>Using Playwright, the agent navigates the live application — browsing pages, triggering interactions, and identifying user paths that don't appear in the coverage map.</p>
+            </div>
+          </div>
+          <div class="case-step">
+            <div class="case-step-num">03</div>
+            <div class="case-step-body">
+              <div class="case-step-title">Test Case Generation</div>
+              <p>For each uncovered flow, the agent generates a structured test case. Cases follow the naming conventions, assertion patterns, and data factory usage of the existing human-written tests.</p>
+            </div>
+          </div>
+          <div class="case-step">
+            <div class="case-step-num">04</div>
+            <div class="case-step-body">
+              <div class="case-step-title">Semantic Deduplication</div>
+              <p>Before publishing, the agent compares new cases against existing TMS entries using semantic similarity — recognising that "Login with valid credentials" and "should login successfully" are the same test and discarding the duplicate.</p>
+            </div>
+          </div>
+          <div class="case-step">
+            <div class="case-step-num">05</div>
+            <div class="case-step-body">
+              <div class="case-step-title">TMS Sync</div>
+              <p>Clean, deduplicated test cases are pushed to Qase TMS, ready to be picked up for automation or manual execution.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-block">
+        <div class="case-block-label">Framework Architecture</div>
+        <ul class="case-list">
+          <li><strong>UI layer</strong> — Page Object Model with full TypeScript typing across all page components and interactions</li>
+          <li><strong>API layer</strong> — typed wrappers using Playwright's request context for direct, in-test API calls without browser overhead</li>
+          <li><strong>Data layer</strong> — factory pattern for consistent, isolated test data generation per run</li>
+          <li><strong>Serial mode</strong> — dependent test flows share state cleanly without workarounds</li>
+          <li><strong>CI/CD</strong> — GitHub Actions pipeline with automated test gating on every push</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="case-sidebar">
+      <div class="case-sidebar-card">
+        <div class="case-block-label">Stack</div>
+        <div class="case-sidebar-tags">
+          <span class="tag blue">Playwright</span>
+          <span class="tag orange">TypeScript</span>
+          <span class="tag accent">AI Agents</span>
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">Qase TMS</span>
+        </div>
+      </div>
+
+      <div class="case-sidebar-card">
+        <div class="case-block-label">Key Outcomes</div>
+        <ul class="case-sidebar-list">
+          <li>Self-extending test suite</li>
+          <li>Zero duplicate entries in TMS</li>
+          <li>Human &amp; AI tests coexist cleanly</li>
+          <li>Coverage gaps surfaced automatically</li>
+        </ul>
+      </div>
+
+      <!-- <div class="case-sidebar-card">
+        <div class="case-block-label">Testing Scope</div>
+        <ul class="case-sidebar-list">
+          <li>UI — E2E cross-browser flows</li>
+          <li>API — typed endpoint wrappers</li>
+          <li>Auth, CRUD, and edge cases</li>
+          <li>Dependent test flows (serial mode)</li>
+        </ul>
+      </div> -->
+
+      <div class="case-sidebar-card">
+        <div class="case-block-label">Repository</div>
+        <a class="case-link" href="https://github.com/MareqU/realworld-app" target="_blank">github.com/MareqU/realworld-app ↗</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-left">© 2026 Marek Urbaník — QA Engineer, Prague</div>
+  <div class="footer-right">Built with <span>precision</span> · Available for hire</div>
+</footer>
+
+<script src="../main.js"></script>
+</body>
+</html>
