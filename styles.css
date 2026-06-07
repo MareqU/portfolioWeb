@@ -955,6 +955,61 @@ a.nav-logo:hover { opacity: 0.75; }
 }
 .case-link:hover { opacity: 0.7; }
 
+/* CASE STUDIES PREVIEW (main page) */
+.cs-preview-section { background: var(--surface); }
+
+.cs-preview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.cs-preview-card {
+  background: var(--surface);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.2s;
+}
+.cs-preview-card:hover { background: var(--surface2); }
+.cs-preview-card:hover .cs-preview-cta { color: var(--accent); }
+
+.cs-preview-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+
+.cs-preview-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 26px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.cs-preview-desc {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.65;
+  flex: 1;
+}
+
+.cs-preview-cta {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+  margin-top: 4px;
+}
+
 /* MOBILE NAV */
 .nav-burger {
   display: none;
@@ -1028,6 +1083,7 @@ a.nav-logo:hover { opacity: 0.75; }
   .hero-right { display: none; }
   .about-grid { grid-template-columns: 1fr; gap: 40px; }
   .projects-grid { grid-template-columns: 1fr; }
+  .cs-preview-grid { grid-template-columns: 1fr; }
   .blog-grid { grid-template-columns: 1fr; }
   .services-grid { grid-template-columns: 1fr; }
   .nav-links { display: none; }
