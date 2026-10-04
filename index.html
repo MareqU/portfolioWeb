@@ -3,392 +3,394 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Marek Urbaník — QA & Test Automation Engineer</title>
+<script>try{document.documentElement.lang=localStorage.getItem('lang')||(/^(cs|sk)/i.test(navigator.language)?'cs':'en')}catch(e){}</script>
+<title data-cs="Marek Urbaník — QA a automatizace testů">Marek Urbaník — QA & Test Automation Engineer</title>
+<meta name="description" content="Marek Urbaník — QA & Test Automation Engineer in Prague. Cypress, Playwright, TypeScript, CI/CD and AI agents in the QA workflow."/>
+<meta name="theme-color" content="#060608"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
+<div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
 
 <!-- NAV -->
-<nav>
-  <div class="nav-logo">MU / Test Automation</div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#stack">Stack</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#case-studies">Case Studies</a></li>
-  </ul>
-  <a class="nav-cta" href="#contact">Hire me</a>
-  <button class="nav-burger" id="navBurger" aria-label="Open menu">
-    <span></span><span></span><span></span>
+<header class="nav">
+  <a class="nav-logo" href="#home">mu<span>/</span>qa</a>
+  <nav class="nav-links" aria-label="Main">
+    <a href="#about"><span lang="en">About</span><span lang="cs">O mně</span></a>
+    <a href="#stack"><span lang="en">Stack</span><span lang="cs">Nástroje</span></a>
+    <a href="#services"><span lang="en">Services</span><span lang="cs">Služby</span></a>
+    <a href="#github">GitHub</a>
+  </nav>
+  <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language / Přepnout jazyk">
+    <span data-l="en">EN</span><span data-l="cs">CZ</span>
   </button>
-</nav>
+  <a class="nav-status" href="#contact">
+    <span class="status-dot"></span>
+    <span class="nav-status-text"><span lang="en">Fully booked</span><span lang="cs">Plně vytížen</span></span>
+  </a>
+  <button class="nav-burger" id="navBurger" aria-label="Open menu">
+    <span></span><span></span>
+  </button>
+</header>
 
 <div class="nav-mobile" id="navMobile">
-  <a href="#about">About</a>
-  <a href="#stack">Stack</a>
-  <a href="#projects">Projects</a>
-  <a href="#case-studies">Case Studies</a>
-  <a href="#services">Services</a>
-  <a href="#contact" class="nav-mobile-cta">Hire me</a>
+  <a href="#about"><i>01</i><span lang="en">About</span><span lang="cs">O mně</span></a>
+  <a href="#stack"><i>02</i><span lang="en">Stack</span><span lang="cs">Nástroje</span></a>
+  <a href="#services"><i>03</i><span lang="en">Services</span><span lang="cs">Služby</span></a>
+  <a href="#github"><i>04</i>GitHub</a>
+  <a href="#contact"><i>05</i><span lang="en">Contact</span><span lang="cs">Kontakt</span></a>
+  <div class="nav-mobile-status"><span class="status-dot"></span><span lang="en">Fully booked · Fakturoid &amp; Pojišťovna VZP</span><span lang="cs">Plně vytížen · Fakturoid a Pojišťovna VZP</span></div>
 </div>
 
+<main>
+
 <!-- HERO -->
-<section class="hero" id="home" style="padding: 0; padding-top: 80px;">
-  <div class="hero-left">
-    <div class="availability fade-up delay-1">
-      <div class="avail-dot"></div>
-      Available for freelance projects
+<section class="hero" id="home">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-grid"></div>
+    <div class="blob blob-a"></div>
+    <div class="blob blob-b"></div>
+  </div>
+
+  <div class="hero-inner">
+    <div class="hero-main">
+      <div class="hero-meta">
+        <span class="mono"><span lang="en">QA &amp; Test Automation Engineer</span><span lang="cs">QA &amp; automatizace testů</span></span>
+        <span class="mono hero-meta-sep">—</span>
+        <span class="mono"><span lang="en">Prague</span><span lang="cs">Praha</span>, <span id="pragueTime">CZ</span></span>
+      </div>
+
+      <h1 class="hero-name">
+        <span class="hero-name-line" data-scramble>Marek</span>
+        <span class="hero-name-line hero-name-outline" data-scramble>Urbaník</span>
+      </h1>
+
+      <div class="hero-copy">
+        <p class="hero-desc" lang="en">
+          Good test automation isn't just working tests — it's a codebase someone else can open and understand.
+          I build frameworks with <strong>clean architecture</strong>: layered structure, reusable components,
+          zero magic, so your team owns it long after I'm done.
+        </p>
+        <p class="hero-desc" lang="cs">
+          Dobrá automatizace testů nejsou jen funkční testy — je to kód, kterému rozumí i někdo další.
+          Stavím frameworky s <strong>čistou architekturou</strong>: vrstvená struktura, znovupoužitelné komponenty,
+          žádná magie. Aby je váš tým zvládl vlastnit i dlouho poté, co skončím.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#github"><span lang="en">View my work</span><span lang="cs">Moje práce</span> <span aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost" href="#terminal" id="tryTerminal"><span lang="en">Try the terminal</span><span lang="cs">Vyzkoušej terminál</span></a>
+        </div>
+      </div>
     </div>
 
-    <!-- <div class="hero-tag fade-up delay-1">QA &amp; Test Automation Engineer</div> -->
-
-    <h1 class="hero-name fade-up delay-2">
-      Marek<br/><em>Urbaník</em>
-    </h1>
-
-    <!-- <p class="hero-title fade-up delay-3">Cypress · Playwright · TypeScript · CI/CD</p> -->
-
-    <p class="hero-desc fade-up delay-4">
-      Good test automation isn't just working tests — it's a codebase someone else can open and understand. 
-      I build frameworks with clean architecture: layered structure, reusable components, zero magic,
-      so your team owns it long after I'm done.
-    </p>
-
-    <div class="hero-actions fade-up delay-5">
-      <a class="btn-primary" href="#projects">View my work</a>
-      <a class="btn-secondary" href="#contact">Get in touch</a>
+    <div class="terminal" id="terminal">
+      <div class="terminal-bar">
+        <span class="terminal-dots"><i></i><i></i><i></i></span>
+        <span class="terminal-title">marek.spec.ts</span>
+        <span class="terminal-badge">CI</span>
+      </div>
+      <div class="terminal-body" id="terminalBody">
+        <div class="terminal-log" id="terminalLog" aria-live="polite">
+          <div class="t-line t-cmd"><span class="t-prompt">~/marek $</span> <span class="t-typed" data-text="npx playwright test marek.spec.ts">npx playwright test marek.spec.ts</span></div>
+          <div class="t-line t-dim">Running 6 tests using 1 worker</div>
+          <div class="t-line t-gap"></div>
+          <div class="t-line"><span class="t-pass">✓</span><span class="t-name">builds frameworks your team can actually read</span><span class="t-time">1.2s</span></div>
+          <div class="t-line"><span class="t-pass">✓</span><span class="t-name">ships Cypress &amp; Playwright suites into CI/CD</span><span class="t-time">0.9s</span></div>
+          <div class="t-line"><span class="t-pass">✓</span><span class="t-name">finds bugs before your users do</span><span class="t-time">0.4s</span></div>
+          <div class="t-line"><span class="t-pass">✓</span><span class="t-name">writes bug reports devs want to read</span><span class="t-time">0.7s</span></div>
+          <div class="t-line"><span class="t-pass">✓</span><span class="t-name">puts AI agents to work in the QA workflow</span><span class="t-time">1.6s</span></div>
+          <div class="t-line"><span class="t-fail">✘</span><span class="t-name">is available for new projects</span><span class="t-time">0.1s</span></div>
+          <div class="t-line t-gap"></div>
+          <div class="t-line t-err">  Error: expect(status).toBe("available")</div>
+          <div class="t-line t-err-detail">  <span class="t-dim">Expected:</span> <span class="t-pass-text">"available"</span></div>
+          <div class="t-line t-err-detail">  <span class="t-dim">Received:</span> <span class="t-fail-text">"fully booked — Fakturoid, Pojišťovna VZP"</span></div>
+          <div class="t-line t-gap"></div>
+          <div class="t-line t-summary"><span class="t-pass-text">5 passed</span> <span class="t-fail-text">1 failed</span> <span class="t-dim">(5.0s)</span></div>
+        </div>
+        <form class="t-input-line" id="terminalForm" autocomplete="off">
+          <label class="t-prompt" for="terminalInput">~/marek $</label>
+          <input class="t-input" id="terminalInput" type="text" spellcheck="false" autocapitalize="off" autocorrect="off" placeholder="type 'help'" aria-label="Terminal command"/>
+        </form>
+      </div>
     </div>
   </div>
 
-  <div class="hero-right">
-    <div class="hero-photo-wrap">
-      <div class="hero-photo-frame">
-        <img 
-          src="https://static.wixstatic.com/media/036c36_3ef06c0978784e72afc0d6ca0b6b6b25~mv2.jpg/v1/fill/w_391,h_397,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/036c36_3ef06c0978784e72afc0d6ca0b6b6b25~mv2.jpg" 
-          alt="Marek Urbaník"
-        />
-      </div>
-      <div class="hero-photo-accent"></div>
-      <div class="hero-stats">
-        <div class="hero-stats-num">3+</div>
-        <div class="hero-stats-label">Years in QA</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- <div class="scroll-indicator">
-    <div class="scroll-line"></div>
-    Scroll to explore
-  </div> -->
-
-  <!-- TICKER -->
-  <div class="stack-ticker">
+  <div class="ticker" aria-hidden="true">
     <div class="ticker-track" id="ticker"></div>
   </div>
 </section>
 
 <!-- ABOUT -->
-<section id="about">
-  <div class="section-header">
-    <div>
-      <div class="section-num">01 — About</div>
-      <h2 class="section-title">Who I am</h2>
-    </div>
-    <a class="section-link" href="https://www.linkedin.com/in/marek-urban%C3%ADk-software-testing/" target="_blank">LinkedIn</a>
+<section class="section" id="about">
+  <div class="section-head" data-reveal>
+    <span class="section-num">01 / <span lang="en">About</span><span lang="cs">O mně</span></span>
+    <h2 class="section-title"><span lang="en">Who I am</span><span lang="cs">Kdo jsem</span></h2>
   </div>
 
   <div class="about-grid">
-    <div class="about-text">
-      <p>
-        I'm a <strong>QA & Test Automation Engineer</strong> based in Prague, currently working as a freelancer on project for PVZP  (a Czech insurance company) where I design and maintain automation frameworks for complex internal system and other web applications. Alongside that, I take on <strong>freelance engagements</strong> for clients who need their software to actually work.
+    <div class="about-text" data-reveal>
+      <p class="about-lead" lang="en">
+        I'm a <strong>QA &amp; Test Automation Engineer</strong> based in Prague. I design, build and maintain
+        test automation for real products that people use every day.
       </p>
-      <!-- <p>
-        My journey started with manual testing of <strong>SAP EWM at Kaufland</strong>. I quickly realised that the real leverage is in automation — frameworks that scale, pipelines that gate deployments, and test strategies that give engineering teams real confidence.
-      </p> -->
-      <p>
-        I work primarily in <strong>JavaScript and TypeScript, writing Cypress and Playwright test suites with Page Object Model patterns, API testing layers, and GitLab CI/CD integration</strong>. I care deeply about test architecture — not just writing tests, but building systems that stay <strong>maintainable</strong>.
+      <p class="about-lead" lang="cs">
+        Jsem <strong>QA &amp; Test Automation Engineer</strong> z Prahy. Navrhuji, stavím a udržuji
+        automatizaci testů pro skutečné produkty, které lidé používají každý den.
       </p>
-      <p>
-        I'm currently exploring <strong>cybersecurity</strong> — understanding how it works and eager to expand my automation frameworks with <strong>security testing</strong> practices.
+      <p lang="en">
+        I work primarily in <strong>JavaScript and TypeScript</strong>, writing <strong>Cypress and Playwright</strong>
+        test suites with Page Object Model patterns, API testing layers, and GitLab CI/CD integration.
+        I care deeply about test architecture — not just writing tests, but building systems that stay
+        <strong>maintainable</strong>.
       </p>
+      <p lang="cs">
+        Pracuji hlavně v <strong>JavaScriptu a TypeScriptu</strong> — píšu testovací sady v <strong>Cypressu a Playwrightu</strong>
+        s Page Object Modelem, vrstvou API testů a integrací do GitLab CI/CD. Záleží mi na architektuře testů —
+        nejen psát testy, ale stavět systémy, které zůstanou <strong>udržovatelné</strong>.
+      </p>
+      <p lang="en">
+        I'm currently exploring <strong>cybersecurity</strong> — understanding how it works and eager to expand
+        my automation frameworks with <strong>security testing</strong> practices.
+      </p>
+      <p lang="cs">
+        Aktuálně se nořím do <strong>kybernetické bezpečnosti</strong> — chci pochopit, jak funguje, a rozšířit
+        své frameworky o <strong>bezpečnostní testování</strong>.
+      </p>
+
+      <div class="stats">
+        <div class="stat"><span class="stat-num">3</span><span class="stat-suffix">+</span><span class="stat-label"><span lang="en">Years in QA</span><span lang="cs">Let v QA</span></span></div>
+        <div class="stat"><span class="stat-num">2</span><span class="stat-label"><span lang="en">Active engagements</span><span lang="cs">Aktivní spolupráce</span></span></div>
+        <div class="stat"><span class="stat-num"><span class="bug" data-bug="nan"><span class="bug-wrong">NaN</span><span class="bug-right">0</span></span></span><span class="stat-label"><span lang="en">Flaky tests tolerated</span><span lang="cs">Tolerovaných flaky testů</span></span></div>
+      </div>
     </div>
 
-    <div class="about-sidebar">
-      <div class="about-fact">
-        <div class="about-fact-label">Location</div>
-        <div class="about-fact-value">Prague, Czech Republic</div>
+    <aside class="about-side" data-reveal>
+      <div class="now-card spot">
+        <div class="now-head">
+          <span class="section-num"><span lang="en">Right now</span><span lang="cs">Právě teď</span></span>
+          <span class="pill pill-warn"><span class="status-dot"></span><span lang="en">Fully booked</span><span lang="cs">Plně vytížen</span></span>
+        </div>
+        <div class="now-item">
+          <div class="now-name">Fakturoid</div>
+          <div class="now-desc"><span lang="en">Online invoicing platform — QA &amp; test automation</span><span lang="cs">Online fakturace — QA a automatizace testů</span></div>
+        </div>
+        <div class="now-item">
+          <div class="now-name">Pojišťovna VZP</div>
+          <div class="now-desc"><span lang="en">Insurance company — automation frameworks for complex internal systems &amp; web apps</span><span lang="cs">Pojišťovna — automatizační frameworky pro složité interní systémy a webové aplikace</span></div>
+        </div>
+        <p class="now-note"><span lang="en">Not taking on new projects at the moment.</span><span lang="cs">Momentálně neberu nové projekty.</span></p>
       </div>
-      <div class="about-fact">
-        <div class="about-fact-label">Availability</div>
-        <div class="about-fact-value">Available · up to 24h/week</div>
-      </div>
-      <div class="about-fact">
-        <div class="about-fact-label">GitHub</div>
-        <div class="about-fact-value"><a href="https://github.com/MareqU" target="_blank">github.com/MareqU</a></div>
-      </div>
-      <div class="about-fact">
-        <div class="about-fact-label">Languages</div>
-        <div class="about-fact-value">Czech, Slovak, English (B1)</div>
-      </div>
-    </div>
+
+      <dl class="facts">
+        <div class="fact"><dt><span lang="en">Location</span><span lang="cs">Lokalita</span></dt><dd><span lang="en">Prague, Czech Republic</span><span lang="cs">Praha, Česko</span></dd></div>
+        <div class="fact"><dt><span lang="en">Languages</span><span lang="cs">Jazyky</span></dt><dd><span lang="en">Czech, Slovak, English (B1)</span><span lang="cs">čeština, slovenština, angličtina (B1)</span></dd></div>
+        <div class="fact"><dt>GitHub</dt><dd><a href="https://github.com/MareqU" target="_blank" rel="noopener">github.com/MareqU ↗</a></dd></div>
+        <div class="fact"><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/marek-urban%C3%ADk-software-testing/" target="_blank" rel="noopener">marek-urbaník ↗</a></dd></div>
+      </dl>
+    </aside>
   </div>
 </section>
 
 <!-- STACK -->
-<section id="stack" class="stack-section">
-  <div class="section-header">
-    <div>
-      <div class="section-num">02 — Stack</div>
-      <h2 class="section-title">Tools &amp; Technologies</h2>
-    </div>
+<section class="section section-alt" id="stack">
+  <div class="section-head" data-reveal>
+    <span class="section-num">02 / <span lang="en">Stack</span><span lang="cs">Nástroje</span></span>
+    <h2 class="section-title"><span lang="en">Tools &amp; <em>technologies</em></span><span lang="cs">Nástroje a <em>technologie</em></span></h2>
   </div>
 
-  <div class="stack-grid">
-    <div class="stack-card">
-      <div class="stack-card-name">Cypress</div>
-      <div class="stack-card-desc">E2E and API testing for web applications. Custom commands, Page Object Model architecture, API intercept and CI/CD integration.</div>
-      <div class="stack-card-tag">Primary</div>
+  <div class="bento">
+    <div class="bento-card bento-xl spot" data-reveal>
+      <div class="bento-top"><span class="bento-tag"><span lang="en">Primary</span><span lang="cs">Hlavní</span></span><span class="bento-glyph">{ }</span></div>
+      <div class="bento-name">Playwright</div>
+      <p class="bento-desc" lang="en">Cross-browser E2E and API testing. Fixtures, request context for direct API calls, serial mode for dependent test flows, and multi-layer test architecture.</p>
+      <p class="bento-desc" lang="cs">Cross-browser E2E a API testy. Fixtures, request context pro přímá API volání, serial mode pro závislé scénáře a vícevrstvá architektura testů.</p>
     </div>
-    <div class="stack-card">
-      <div class="stack-card-name">Playwright</div>
-      <div class="stack-card-desc">Cross-browser E2E and API testing. Fixtures, request context for direct API calls, serial mode for dependent test flows, and multi-layer test architecture.</div>
-      <div class="stack-card-tag">Primary</div>
+    <div class="bento-card bento-xl spot" data-reveal>
+      <div class="bento-top"><span class="bento-tag"><span lang="en">Primary</span><span lang="cs">Hlavní</span></span><span class="bento-glyph">cy</span></div>
+      <div class="bento-name">Cypress</div>
+      <p class="bento-desc" lang="en">E2E and API testing for web applications. Custom commands, Page Object Model architecture, API intercept and CI/CD integration.</p>
+      <p class="bento-desc" lang="cs">E2E a API testy webových aplikací. Vlastní příkazy, Page Object Model, API intercept a integrace do CI/CD.</p>
     </div>
-    <div class="stack-card">
-      <div class="stack-card-name">TypeScript</div>
-      <div class="stack-card-desc">Type-safe test code and utilities. Strong typing for page objects, test data, and API models.</div>
-      <div class="stack-card-tag">Primary</div>
+    <div class="bento-card spot" data-reveal>
+      <div class="bento-top"><span class="bento-tag"><span lang="en">Primary</span><span lang="cs">Hlavní</span></span><span class="bento-glyph">TS</span></div>
+      <div class="bento-name">TypeScript</div>
+      <p class="bento-desc" lang="en">Type-safe test code and utilities. Strong typing for page objects, test data, and API models.</p>
+      <p class="bento-desc" lang="cs">Typově bezpečný testovací kód a utility. Silné typy pro page objecty, testovací data a API modely.</p>
     </div>
-    <div class="stack-card">
-      <div class="stack-card-name">GitLab CI/CD</div>
-      <div class="stack-card-desc">Pipeline configuration, test stage gating, and environment management.</div>
-      <div class="stack-card-tag">Primary</div>
+    <div class="bento-card spot" data-reveal>
+      <div class="bento-top"><span class="bento-tag"><span lang="en">Primary</span><span lang="cs">Hlavní</span></span><span class="bento-glyph">⟳</span></div>
+      <div class="bento-name">GitLab CI/CD</div>
+      <p class="bento-desc" lang="en">Pipeline configuration, test stage gating, and environment management.</p>
+      <p class="bento-desc" lang="cs">Konfigurace pipeline, testy jako gate mezi stage a správa prostředí.</p>
     </div>
-    <div class="stack-card">
-      <div class="stack-card-name">Node.js</div>
-      <div class="stack-card-desc">Custom tooling, test utilities, and server-side scripts.</div>
-      <div class="stack-card-tag">Core</div>
+    <div class="bento-card bento-xl spot" data-reveal>
+      <div class="bento-top"><span class="bento-tag"><span lang="en">Core</span><span lang="cs">Základ</span></span><span class="bento-glyph">✦</span></div>
+      <div class="bento-name"><span lang="en">AI Agents</span><span lang="cs">AI agenti</span></div>
+      <p class="bento-desc" lang="en">Claude Code and Playwright MCP inside the QA workflow — coverage mapping, test generation, research automation.</p>
+      <p class="bento-desc" lang="cs">Claude Code a Playwright MCP přímo v QA workflow — mapování pokrytí, generování testů, automatizace rešerší.</p>
     </div>
-    <div class="stack-card">
-      <div class="stack-card-name">Postman / REST</div>
-      <div class="stack-card-desc">API contract testing, manual exploration.</div>
-      <div class="stack-card-tag">Core</div>
+    <div class="bento-card spot" data-reveal>
+      <div class="bento-top"><span class="bento-tag"><span lang="en">Core</span><span lang="cs">Základ</span></span><span class="bento-glyph">js</span></div>
+      <div class="bento-name">Node.js</div>
+      <p class="bento-desc" lang="en">Custom tooling, test utilities, and server-side scripts.</p>
+      <p class="bento-desc" lang="cs">Vlastní nástroje, testovací utility a serverové skripty.</p>
     </div>
-    <div class="stack-card">
-      <div class="stack-card-name">MongoDB</div>
-      <div class="stack-card-desc">Running local database instances for test environment setup and basic data validation — querying and manipulating test data directly in the database.</div>
-      <div class="stack-card-tag">Core</div>
+    <div class="bento-card spot" data-reveal>
+      <div class="bento-top"><span class="bento-tag"><span lang="en">Core</span><span lang="cs">Základ</span></span><span class="bento-glyph">⇄</span></div>
+      <div class="bento-name">Postman / REST</div>
+      <p class="bento-desc" lang="en">API contract testing, manual exploration.</p>
+      <p class="bento-desc" lang="cs">Testování API kontraktů, manuální průzkum.</p>
     </div>
-    <div class="stack-card">
-      <div class="stack-card-name">Linux / Git</div>
-      <div class="stack-card-desc">Command-line fluency for dev workflows, environment setup, and version control hygiene.</div>
-      <div class="stack-card-tag">Core</div>
+    <div class="bento-card spot" data-reveal>
+      <div class="bento-top"><span class="bento-tag"><span lang="en">Core</span><span lang="cs">Základ</span></span><span class="bento-glyph bug bug-misalign" data-bug="align">db</span></div>
+      <div class="bento-name">MongoDB</div>
+      <p class="bento-desc" lang="en">Local database instances for test environments — querying and manipulating test data directly.</p>
+      <p class="bento-desc" lang="cs">Lokální databáze pro testovací prostředí — dotazy a úpravy testovacích dat přímo v DB.</p>
     </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects" style="background: var(--bg);">
-  <div class="section-header">
-    <div>
-      <div class="section-num">03 — Projects</div>
-      <h2 class="section-title">Selected Work</h2>
+    <div class="bento-card spot" data-reveal>
+      <div class="bento-top"><span class="bento-tag"><span lang="en">Core</span><span lang="cs">Základ</span></span><span class="bento-glyph">$_</span></div>
+      <div class="bento-name">Linux / Git</div>
+      <p class="bento-desc" lang="en">Command-line fluency for dev workflows, environment setup, and version control hygiene.</p>
+      <p class="bento-desc" lang="cs">Plynulá práce v příkazové řádce, nastavování prostředí a čistá práce s verzováním.</p>
     </div>
-    <a class="section-link" href="https://github.com/MareqU" target="_blank">All on GitHub</a>
-  </div>
-
-  <div class="projects-grid">
-    <a class="project-card" href="https://github.com/MareqU/realworld-app">
-      <div class="project-card-header">
-        <div class="project-num">01</div>
-        <div class="project-arrow">↗</div>
-      </div>
-      <div class="project-title">AI-Powered Playwright Test Framework</div>
-      <div class="project-desc">
-        A Playwright test framework with an autonomous AI agent built into the QA workflow. Covers UI and API layers with
-        Page Object Model, typed API wrappers, and factory pattern. The agent maps existing coverage from spec files, 
-        browses the live app, and generates structured test cases for uncovered flows. Before pushing to Qase TMS, it 
-        applies semantic deduplication — recognising that "Login with valid credentials" and "should login successfully" 
-        are the same case. The result: a self-extending test suite where human-written and AI-generated tests coexist 
-        without noise.
-      </div>
-      <div class="project-tags">
-        <span class="tag blue">Playwright</span>
-        <span class="tag orange">TypeScript</span>
-        <span class="tag accent">AI Agents</span>
-        <span class="tag">Github actions</span>
-      </div>
-    </a>
-
-    <div class="project-card" style="cursor: default;">
-      <div class="project-card-header">
-        <div class="project-num">02</div>
-      </div>
-      <div class="project-title">PVZP Cypress Automation</div>
-      <div class="project-desc">
-        Automation framework for a Czech insurance company. Built with Page Object Model architecture, JavaScript, and GitLab CI/CD integration. Covers E2E flows, API intercept, and custom business logic validation across core features.
-      </div>
-      <div class="project-tags">
-        <span class="tag accent">Cypress</span>
-        <span class="tag orange">JavaScript</span>
-        <span class="tag blue">GitLab CI</span>
-        <span class="tag">MongoDB</span>
-      </div>
-    </div>
-
-    <a class="project-card" href="https://github.com/MareqU/test-dashboard" target="_blank">
-      <div class="project-card-header">
-        <div class="project-num">03</div>
-        <div class="project-arrow">↗</div>
-      </div>
-      <div class="project-title">Test Dashboard</div>
-      <div class="project-desc">
-        A small personal project built to deepen my understanding of backend development. A JavaScript dashboard that aggregates and visualises test run results — stepping outside QA into server-side code to become a more well-rounded engineer..
-      </div>
-      <div class="project-tags">
-        <span class="tag orange">JavaScript</span>
-        <span class="tag accent">MongoDB</span>
-        <span class="tag blue">Express.js</span>
-        <span class="tag">Reporting</span>
-        <span class="tag">Test Analytics</span>
-      </div>
-    </a>
-
-    <a class="project-card" href="https://github.com/MareqU/chatApp" target="_blank">
-      <div class="project-card-header">
-        <div class="project-num">04</div>
-        <div class="project-arrow">↗</div>
-      </div>
-      <div class="project-title">Chat Application</div>
-      <div class="project-desc">
-        Full-stack JavaScript chat application — a personal project exploring real-time communication with WebSockets. Demonstrates initiative beyond QA scope: understanding how applications are built helps build better tests for them.
-      </div>
-      <div class="project-tags">
-        <span class="tag orange">JavaScript</span>
-        <span class="tag accent">Node.js</span>
-        <span class="tag blue">WebSockets</span>
-        <span class="tag">Full-stack</span>
-      </div>
-    </a>
   </div>
 </section>
 
 <!-- SERVICES -->
-<section id="services" class="services-section">
-  <div class="section-header">
-    <div>
-      <div class="section-num">04 — Services</div>
-      <h2 class="section-title">What I offer</h2>
-    </div>
-    <a class="section-link" href="#contact">Let's talk</a>
+<section class="section" id="services">
+  <div class="section-head" data-reveal>
+    <span class="section-num"><span class="bug" data-bug="number"><span class="bug-wrong">02</span><span class="bug-right">03</span></span> / <span lang="en">Services</span><span lang="cs">Služby</span></span>
+    <h2 class="section-title"><span lang="en">What I <em>do</em></span><span lang="cs">Co <em>dělám</em></span></h2>
   </div>
 
-  <div class="services-grid">
-    <div class="service-card">
-      <div class="service-num">01</div>
-      <div class="service-name">Test Automation Framework</div>
-      <div class="service-desc">I design and build test automation architectures from scratch — or rescue existing ones.</div>
-      <ul class="service-bullets">
+  <div class="services">
+    <div class="service spot" data-reveal>
+      <span class="service-num">01</span>
+      <h3 class="service-name"><span lang="en">Test Automation Framework</span><span lang="cs">Framework pro automatizaci testů</span></h3>
+      <p class="service-desc" lang="en">I design and build test automation architectures from scratch — or rescue existing ones.</p>
+      <p class="service-desc" lang="cs">Navrhuji a stavím architekturu automatizace testů od nuly — nebo zachraňuji tu stávající.</p>
+      <ul class="service-list" lang="en">
         <li>E2E test suite design</li>
         <li>Sustainable test automation frameworks</li>
         <li>GitLab / GitHub CI integration</li>
         <li>Test reporting setup</li>
       </ul>
-    </div>
-
-    <div class="service-card">
-      <div class="service-num">02</div>
-      <div class="service-name">Manual QA & Bug Reporting</div>
-      <div class="service-desc">Not every bug needs an automated test to find it first. I bring a structured manual testing approach — exploratory sessions, edge case hunting, and clear bug reports that developers actually want to read.</div>
-      <ul class="service-bullets">
-        <li>Exploratory & regression testing</li>
-        <li>Structured bug reports with reproduction steps</li>
-        <li>Test case design & documentation</li>
-        <li>UAT support & sign-off</li>
+      <ul class="service-list" lang="cs">
+        <li>Návrh E2E testovacích sad</li>
+        <li>Udržitelné automatizační frameworky</li>
+        <li>Integrace do GitLab / GitHub CI</li>
+        <li>Nastavení reportingu testů</li>
       </ul>
     </div>
-
-    <div class="service-card">
-      <div class="service-num">03</div>
-      <div class="service-name">QA Audit &amp; Consultation</div>
-      <div class="service-desc">Not sure where your QA gaps are? I'll review your current testing strategy, identify risks, and give you a clear roadmap with prioritised recommendations.</div>
-      <ul class="service-bullets">
+    <div class="service spot" data-reveal>
+      <span class="service-num">02</span>
+      <h3 class="service-name"><span lang="en">Manual QA &amp; Bug Reporting</span><span lang="cs">Manuální QA a reportování bugů</span></h3>
+      <p class="service-desc" lang="en">Not every bug needs an automated test to find it first. Exploratory sessions, edge case hunting, and clear bug reports that developers actually want to <span class="bug" data-bug="typo"><span class="bug-wrong">raed</span><span class="bug-right">read</span></span>.</p>
+      <p class="service-desc" lang="cs">Ne každý bug musí jako první najít automatický test. Explorativní testování, hledání okrajových případů a srozumitelné bug reporty, které vývojáři opravdu rádi <span class="bug" data-bug="typo"><span class="bug-wrong">čotu</span><span class="bug-right">čtou</span></span>.</p>
+      <ul class="service-list" lang="en">
+        <li>Exploratory &amp; regression testing</li>
+        <li>Bug reports with reproduction steps</li>
+        <li>Test case design &amp; documentation</li>
+        <li>UAT support &amp; sign-off</li>
+      </ul>
+      <ul class="service-list" lang="cs">
+        <li>Explorativní a regresní testování</li>
+        <li>Bug reporty s kroky k reprodukci</li>
+        <li>Návrh a dokumentace testovacích případů</li>
+        <li>Podpora UAT a schvalování</li>
+      </ul>
+    </div>
+    <div class="service spot" data-reveal>
+      <span class="service-num">03</span>
+      <h3 class="service-name"><span lang="en">QA Audit &amp; Consultation</span><span lang="cs">QA audit a konzultace</span></h3>
+      <p class="service-desc" lang="en">I review your current testing strategy, identify risks, and give you a clear roadmap with prioritised recommendations.</p>
+      <p class="service-desc" lang="cs">Projdu vaši současnou testovací strategii, najdu rizika a dám vám jasnou roadmapu s prioritizovanými doporučeními.</p>
+      <ul class="service-list" lang="en">
         <li>Test strategy review</li>
         <li>Coverage gap analysis</li>
         <li>Tool selection advice</li>
         <li>Risk-based test planning</li>
       </ul>
+      <ul class="service-list" lang="cs">
+        <li>Revize testovací strategie</li>
+        <li>Analýza mezer v pokrytí</li>
+        <li>Poradenství při výběru nástrojů</li>
+        <li>Plánování testů podle rizik</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- CASE STUDIES -->
-<section id="case-studies" class="cs-preview-section">
-  <div class="section-header">
-    <div>
-      <div class="section-num">05 — Case Studies</div>
-      <h2 class="section-title">In-depth<br/><em>breakdowns</em></h2>
-    </div>
-    <a class="section-link" href="case-studies/">All case studies</a>
+<!-- GITHUB -->
+<section class="section section-alt" id="github">
+  <div class="section-head" data-reveal>
+    <span class="section-num">04 / GitHub</span>
+    <h2 class="section-title"><span lang="en">Live from <em>GitHub</em></span><span lang="cs">Živě z <em>GitHubu</em></span></h2>
+    <a class="section-link" href="https://github.com/MareqU" target="_blank" rel="noopener">github.com/MareqU ↗</a>
   </div>
 
-  <div class="cs-preview-grid">
-    <a class="cs-preview-card" href="case-studies/ai-playwright">
-      <div class="cs-preview-num">01</div>
-      <div class="cs-preview-title">AI-Powered Playwright Test Framework</div>
-      <div class="cs-preview-desc">An autonomous AI agent that maps test coverage, browses the live app, and generates deduplicated test cases for uncovered flows — then pushes them to Qase TMS.</div>
-      <div class="project-tags">
-        <span class="tag blue">Playwright</span>
-        <span class="tag orange">TypeScript</span>
-        <span class="tag accent">AI Agents</span>
-      </div>
-      <div class="cs-preview-cta">Read case study →</div>
-    </a>
-
-    <a class="cs-preview-card" href="case-studies/buy-car">
-      <div class="cs-preview-num">02</div>
-      <div class="cs-preview-title">AI Car Research Agent</div>
-      <div class="cs-preview-desc">A Claude Code agent that browses Czech car portals, evaluates engine reliability, and generates structured buy / reconsider / avoid reports for every listing.</div>
-      <div class="project-tags">
-        <span class="tag accent">Claude Code</span>
-        <span class="tag blue">Playwright MCP</span>
-        <span class="tag orange">AI Agent</span>
-      </div>
-      <div class="cs-preview-cta">Read case study →</div>
-    </a>
+  <div class="gh" data-reveal>
+    <div class="gh-pulse">
+      <span class="gh-pulse-dot"></span>
+      <span id="ghPulse"><span lang="en">Connecting to GitHub…</span><span lang="cs">Připojuji se ke GitHubu…</span></span>
+    </div>
+    <div class="gh-repos" id="ghRepos">
+      <div class="gh-repo gh-skeleton"></div>
+      <div class="gh-repo gh-skeleton"></div>
+      <div class="gh-repo gh-skeleton"></div>
+    </div>
   </div>
 </section>
 
 <!-- CONTACT -->
-<section class="contact-section" id="contact">
-  <div class="contact-eyebrow">06 — Contact</div>
-  <h2 class="contact-headline">Let's build<br/><em>quality</em> together</h2>
-  <p class="contact-sub">Available for freelance projects, audits, and long-term engagements.</p>
-
+<section class="contact" id="contact">
+  <div class="contact-glow" aria-hidden="true"></div>
+  <span class="section-num">05 / <span lang="en">Contact</span><span lang="cs">Kontakt</span></span>
+  <h2 class="contact-title"><span lang="en">Let's talk<br/><em>quality.</em></span><span lang="cs">Pojďme řešit<br/><em>kvalitu.</em></span></h2>
+  <div class="contact-sub">
+    <span class="pill pill-warn"><span class="status-dot"></span><span lang="en">Fully booked</span><span lang="cs">Plně vytížen</span></span>
+    <p lang="en">
+      I'm fully allocated to Fakturoid and Pojišťovna VZP and not taking on new projects right now —
+      but always happy to connect and talk test automation.
+    </p>
+    <p lang="cs">
+      Jsem plně vytížený pro Fakturoid a Pojišťovnu VZP a nové projekty teď neberu —
+      ale rád se spojím a pobavím se o automatizaci testů.
+    </p>
+  </div>
+  <a class="contact-mail" href="mailto:marekurbanik@icloud.com">marekurbanik@icloud.com</a>
   <div class="contact-links">
-    <a class="contact-item" href="mailto:marekurbanik@icloud.com">
-      <span>✉</span> marekurbanik@icloud.com
-    </a>
-    <a class="contact-item" href="https://www.linkedin.com/in/marek-urban%C3%ADk-software-testing/" target="_blank">
-      LinkedIn
-    </a>
-    <a class="contact-item" href="https://github.com/MareqU" target="_blank">
-      GitHub
-    </a>
+    <a class="btn btn-ghost" href="https://www.linkedin.com/in/marek-urban%C3%ADk-software-testing/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    <a class="btn btn-ghost" href="https://github.com/MareqU" target="_blank" rel="noopener">GitHub ↗</a>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-left">© 2026 Marek Urbaník — QA Engineer, Prague</div>
-  <div class="footer-right">Built with <span>precision</span> · Available for hire</div>
+</main>
+
+<footer class="footer">
+  <span>© <span class="bug" data-bug="year"><span class="bug-wrong">2025</span><span class="bug-right">2026</span></span> Marek Urbaník — QA Engineer, <span lang="en">Prague</span><span lang="cs">Praha</span></span>
+  <span class="footer-run"><span class="t-pass-text">5 passed</span> · <span class="t-fail-text">1 failed</span> · availability</span>
 </footer>
+
+<!-- BUG HUNT -->
+<div class="bughunt" id="bughunt" hidden>
+  <div class="bughunt-panel" id="bughuntPanel">
+    <div class="bughunt-title">Bug hunt</div>
+    <p lang="en">I've hidden <strong>5 bugs</strong> on this page. Spot one? Click it to report it.</p>
+    <p lang="cs">Na stránce jsem schoval <strong>5 bugů</strong>. Všimneš si jich? Klikni na bug a nahlas ho.</p>
+    <ol class="bughunt-list" id="bughuntList"></ol>
+  </div>
+  <button class="bughunt-btn" id="bughuntBtn" type="button" aria-expanded="false" aria-controls="bughuntPanel">
+    <span class="bughunt-icon" aria-hidden="true">🐞</span>
+    <span><b id="bughuntCount">0</b>/5</span>
+  </button>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="main.js"></script>
 </body>
