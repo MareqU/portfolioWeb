@@ -30,6 +30,14 @@ function setLang(l) {
   applyLang();
 }
 $('langToggle')?.addEventListener('click', () => setLang(lang() === 'cs' ? 'en' : 'cs'));
+
+// Czech typography: keep one-letter prepositions/conjunctions (v, s, k, z, a, i, o, u) on the same line as the next word
+document.querySelectorAll('[lang="cs"]').forEach(el => {
+  const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+  for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+    n.nodeValue = n.nodeValue.replace(/(^|[\s(„])([aiouvszkAIOUVSZK]) +/g, '$1$2\u00A0');
+  }
+});
 applyLang();
 
 // ───────────── Mobile nav ─────────────
@@ -165,7 +173,7 @@ function confetti(origin) {
 // ───────────── Bug hunt ─────────────
 const BUGS = {
   typo: ['Typo in the services section', 'Překlep v sekci služeb'],
-  align: ['Misaligned MongoDB icon', 'Pootočená ikona MongoDB'],
+  align: ['Misaligned MongoDB icon', 'Posunutá ikona MongoDB'],
   nan: ['NaN instead of a number', 'NaN místo čísla'],
   number: ['Duplicate section number', 'Duplicitní číslo sekce'],
   year: ['Outdated year in the footer', 'Starý rok v patičce'],
@@ -210,7 +218,7 @@ const bugHunt = (() => {
     root.classList.add('bump');
 
     if (found.length === ids.length) {
-      toast(t('🎉 5/5 bugs found — QA approved. You’ve got an eye for testing!', '🎉 5/5 bugů nalezeno — schváleno QA. Na testování máš oko!'));
+      toast(t('🎉 You found all 5 bugs. Thanks for the report!', '🎉 Našli jste všech 5 bugů. Díky za report!'));
       confetti(btn);
     } else {
       toast(t(`🐞 Bug reported: ${BUGS[id][0]} (${found.length}/5)`, `🐞 Bug nahlášen: ${BUGS[id][1]} (${found.length}/5)`));
@@ -261,7 +269,7 @@ function initTerminal() {
   const wait = ms => (fast ? Promise.resolve() : new Promise(r => setTimeout(r, ms)));
   const scrollDown = () => { body.scrollTop = body.scrollHeight; };
 
-  const updatePlaceholder = () => { input.placeholder = t("type 'help'", "napiš 'help'"); };
+  const updatePlaceholder = () => { input.placeholder = t("type 'help'", "napište 'help'"); };
   updatePlaceholder();
   langListeners.push(updatePlaceholder);
 
@@ -321,8 +329,8 @@ function initTerminal() {
 
   const files = {
     'about.md': () => t(
-      '# Marek Urbaník\nQA & Test Automation Engineer based in Prague.\nI build test frameworks with clean architecture — layered,\nreusable, zero magic. Currently exploring security testing.',
-      '# Marek Urbaník\nQA & Test Automation Engineer z Prahy.\nStavím testovací frameworky s čistou architekturou — vrstvené,\nznovupoužitelné, bez magie. Aktuálně se nořím do security testingu.'
+      '# Marek Urbaník\nQA engineer from Prague, mostly test automation\n(Playwright, Cypress, TypeScript). Currently learning security testing.',
+      '# Marek Urbaník\nQA engineer z Prahy, hlavně automatizace testů\n(Playwright, Cypress, TypeScript). Teď se učím security testing.'
     ),
     'stack.json': () => JSON.stringify({
       primary: ['Playwright', 'Cypress', 'TypeScript', 'GitLab CI/CD'],
@@ -335,38 +343,38 @@ function initTerminal() {
   const commands = {
     help: () => print(t(
       `<span class="t-k">whoami</span>        who is Marek
-<span class="t-k">status</span>        current availability
+<span class="t-k">status</span>        what I'm working on now
 <span class="t-k">stack</span>         tools I work with
 <span class="t-k">ls</span>, <span class="t-k">cat</span> &lt;file&gt; browse files
 <span class="t-k">cd</span> &lt;section&gt;  jump to a section
 <span class="t-k">contact</span>       get in touch
 <span class="t-k">github</span>        open GitHub profile
-<span class="t-k">bugs</span>          bug hunt progress
+<span class="t-k">bugs</span>          how many bugs you've found
 <span class="t-k">test</span>          re-run the test suite
 <span class="t-k">lang</span> &lt;cs|en&gt;  switch language
 <span class="t-k">clear</span>         clear the terminal`,
       `<span class="t-k">whoami</span>        kdo je Marek
-<span class="t-k">status</span>        aktuální dostupnost
+<span class="t-k">status</span>        na čem teď pracuji
 <span class="t-k">stack</span>         nástroje, se kterými pracuji
 <span class="t-k">ls</span>, <span class="t-k">cat</span> &lt;soubor&gt; procházení souborů
-<span class="t-k">cd</span> &lt;sekce&gt;     skok na sekci
+<span class="t-k">cd</span> &lt;sekce&gt;     přejít na sekci
 <span class="t-k">contact</span>       kontakt
-<span class="t-k">github</span>        otevřít GitHub profil
-<span class="t-k">bugs</span>          stav bug huntu
+<span class="t-k">github</span>        otevřít profil na GitHubu
+<span class="t-k">bugs</span>          kolik bugů už máte
 <span class="t-k">test</span>          znovu spustit testy
 <span class="t-k">lang</span> &lt;cs|en&gt;  přepnout jazyk
 <span class="t-k">clear</span>         vyčistit terminál`
     )),
-    whoami: () => print(t('Marek Urbaník — QA &amp; Test Automation Engineer, Prague 🇨🇿', 'Marek Urbaník — QA &amp; Test Automation Engineer, Praha 🇨🇿')),
+    whoami: () => print(t('Marek Urbaník, QA engineer, Prague 🇨🇿', 'Marek Urbaník, QA engineer, Praha 🇨🇿')),
     status: () => print(t(
       `<span class="t-w">● fully booked</span>
   Fakturoid ........ QA &amp; test automation
   Pojišťovna VZP ... automation frameworks
-Not taking on new projects right now. Try <span class="t-k">contact</span> anyway.`,
-      `<span class="t-w">● plně vytížen</span>
+Not taking on new projects right now. You can reach me via <span class="t-k">contact</span>.`,
+      `<span class="t-w">● plně vytížený</span>
   Fakturoid ........ QA a automatizace testů
   Pojišťovna VZP ... automatizační frameworky
-Nové projekty teď neberu. Ale <span class="t-k">contact</span> funguje vždycky.`
+Nové projekty teď neberu. Kontakt najdete přes <span class="t-k">contact</span>.`
     )),
     stack: () => print(esc(files['stack.json']())),
     ls: () => print('about.md  stack.json  contact.txt'),
@@ -377,9 +385,9 @@ Nové projekty teď neberu. Ale <span class="t-k">contact</span> funguje vždyck
     },
     cd: ([target]) => {
       const name = (target || '').replace(/^[./~]+|\/$/g, '');
-      if (!name) return print(t("You're already home.", 'Už jsi doma.'));
+      if (!name) return print(t("You're already home.", 'Už jste doma.'));
       if (!sections.includes(name)) return print(`cd: no such section: ${esc(target)}`);
-      print(t(`→ jumping to #${name}`, `→ skáču na #${name}`));
+      print(t(`→ jumping to #${name}`, `→ přesouvám na #${name}`));
       setTimeout(() => $(name)?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' }), 300);
     },
     pwd: () => print('/home/marek'),
@@ -394,17 +402,17 @@ Nové projekty teď neberu. Ale <span class="t-k">contact</span> funguje vždyck
       if (!bugHunt) return print(t('No bugs here. Suspicious.', 'Tady žádné bugy nejsou. Podezřelé.'));
       if (arg === 'reset') {
         bugHunt.reset();
-        return print(t('Bugs restored. Happy hunting 🐞', 'Bugy vráceny. Hodně štěstí 🐞'));
+        return print(t('The bugs are back. Happy hunting 🐞', 'Bugy jsou zpátky. Hodně štěstí 🐞'));
       }
       const found = bugHunt.found();
       const rows = Object.keys(BUGS).map(id => found.includes(id)
         ? `<span class="t-k">✓</span> ${esc(t(...BUGS[id]))}`
         : `<span class="t-dim">○ ???</span>`);
-      print(`${t('Bug hunt', 'Bug hunt')}: ${found.length}/${bugHunt.total}\n${rows.join('\n')}${found.length < bugHunt.total ? `\n<span class="t-dim">${t('Hint: they are hiding in plain sight.', 'Nápověda: schovávají se na očích.')}</span>` : ''}`);
+      print(`${t('Bug hunt', 'Bug hunt')}: ${found.length}/${bugHunt.total}\n${rows.join('\n')}${found.length < bugHunt.total ? `\n<span class="t-dim">${t('Hint: they are hiding in plain sight.', 'Nápověda: jsou přímo na očích.')}</span>` : ''}`);
     },
     test: () => rerun(),
     lang: ([l]) => {
-      if (l !== 'cs' && l !== 'en') return print(`${t('Current language', 'Aktuální jazyk')}: ${lang()} — ${t('use', 'použij')} <span class="t-k">lang cs</span> / <span class="t-k">lang en</span>`);
+      if (l !== 'cs' && l !== 'en') return print(`${t('Current language', 'Aktuální jazyk')}: ${lang()} — ${t('use', 'použijte')} <span class="t-k">lang cs</span> / <span class="t-k">lang en</span>`);
       setLang(l);
       print(t('Language switched to English.', 'Jazyk přepnut na češtinu.'));
     },
@@ -412,15 +420,15 @@ Nové projekty teď neberu. Ale <span class="t-k">contact</span> funguje vždyck
     echo: args => print(esc(args.join(' '))),
     date: () => print(new Date().toString()),
     hire: () => print(t(
-      '<span class="t-fail-text">hire: Marek is fully booked</span> (Fakturoid, Pojišťovna VZP). Try <span class="t-k">contact</span> to say hi.',
-      '<span class="t-fail-text">hire: Marek je plně vytížen</span> (Fakturoid, Pojišťovna VZP). Zkus <span class="t-k">contact</span> a pozdrav ho.'
+      '<span class="t-fail-text">hire: Marek is fully booked</span> (Fakturoid, Pojišťovna VZP). You can say hi via <span class="t-k">contact</span>.',
+      '<span class="t-fail-text">hire: Marek je plně vytížený</span> (Fakturoid, Pojišťovna VZP). Pozdravit ho můžete přes <span class="t-k">contact</span>.'
     )),
     sudo: () => print(t(
-      '[sudo] password for visitor: ********\nSorry, Marek is still fully booked. This incident will be reported. 😄',
-      '[sudo] heslo pro návštěvníka: ********\nSorry, Marek je pořád plně vytížen. Tento incident bude nahlášen. 😄'
+      '[sudo] password for visitor: ********\nMarek is still fully booked. This incident will be reported. 😄',
+      '[sudo] heslo pro visitor: ********\nMarek je pořád plně vytížený. Tento incident bude nahlášen. 😄'
     )),
-    rm: () => print(t('rm: nice try 🙂 this filesystem is covered by tests.', 'rm: pěkný pokus 🙂 tenhle filesystem je pokrytý testy.')),
-    exit: () => print(t("There is no escape. Type <span class=\"t-k\">help</span>.", 'Odsud se neutíká. Napiš <span class="t-k">help</span>.')),
+    rm: () => print(t('rm: nice try 🙂 this filesystem is covered by tests.', 'rm: dobrý pokus 🙂 tenhle filesystem je pokrytý testy.')),
+    exit: () => print(t("There is no escape. Try <span class=\"t-k\">help</span>.", 'Odsud se neutíká. Zkuste <span class="t-k">help</span>.')),
     coffee: () => print(t('☕ Brewing… done. Tests still green.', '☕ Vařím… hotovo. Testy jsou pořád zelené.')),
     vim: () => print(t("This isn't that kind of terminal. :q", 'Tohle není ten typ terminálu. :q')),
   };
@@ -437,7 +445,7 @@ Nové projekty teď neberu. Ale <span class="t-k">contact</span> funguje vždyck
     const key = aliases[line] || aliases[word] || word.toLowerCase();
     const cmd = commands[key];
     if (cmd) cmd(args);
-    else print(`${t('command not found', 'příkaz nenalezen')}: ${esc(word)}. ${t('Type', 'Napiš')} <span class="t-k">help</span>.`);
+    else print(`${t('command not found', 'příkaz nenalezen')}: ${esc(word)}. ${t('Type', 'Napište')} <span class="t-k">help</span>.`);
   }
 
   form.addEventListener('submit', e => {
@@ -515,11 +523,11 @@ function initGitHub() {
   const pulse = $('ghPulse');
   // Friendlier descriptions than the raw GitHub ones (realworld-app is a fork, its upstream description is misleading)
   const DESCRIPTIONS = {
-    'czech-test-data': ['Czech test data for automated tests: rodné číslo, IČO, DIČ, IBAN, SPZ, VIN and more — including edge cases. TypeScript, zero dependencies.', 'Česká testovací data pro automatizované testy: rodné číslo, IČO, DIČ, IBAN, SPZ, VIN a další — včetně okrajových případů. TypeScript, bez závislostí.'],
+    'czech-test-data': ['Czech test data for automated tests: rodné číslo, IČO, DIČ, IBAN, SPZ, VIN and more, including edge cases. TypeScript, zero dependencies.', 'Česká testovací data pro automatizované testy: rodné číslo, IČO, DIČ, IBAN, SPZ, VIN a další, včetně okrajových případů. TypeScript, bez závislostí.'],
     'realworld-app': ['AI-powered Playwright test framework with an autonomous QA agent.', 'Playwright framework s autonomním AI agentem pro QA.'],
-    carResearch: ['Claude Code agent for used car research across Czech car portals.', 'Agent v Claude Code pro výběr ojetého auta napříč českými portály.'],
-    portfolioWeb: ['This website — hand-written HTML, CSS and JavaScript.', 'Tento web — ručně psané HTML, CSS a JavaScript.'],
-    chatApp: ['Real-time chat application over WebSockets.', 'Real-time chat aplikace přes WebSockety.'],
+    carResearch: ['Claude Code agent that searches Czech car marketplaces for used cars.', 'Agent v Claude Code, který hledá ojetá auta na českých autobazarech.'],
+    portfolioWeb: ['This website, hand-written in HTML, CSS and JavaScript.', 'Tento web, napsaný ručně v HTML, CSS a JavaScriptu.'],
+    chatApp: ['Real-time chat over WebSockets.', 'Chat v reálném čase přes WebSockety.'],
   };
   const LANG_COLORS = { TypeScript: '#3178c6', JavaScript: '#f1e05a', HTML: '#e34c26', CSS: '#663399', Python: '#3572a5', Shell: '#89e051' };
   const repoIcon = '<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"/></svg>';

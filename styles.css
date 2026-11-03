@@ -12,8 +12,8 @@
   --violet: #8b6cff;
   --amber: #ffb547;
   --red: #ff5c6c;
-  --font: 'Bricolage Grotesque', system-ui, sans-serif;
-  --mono: 'JetBrains Mono', ui-monospace, monospace;
+  --font: 'Geist', system-ui, sans-serif;
+  --mono: 'Geist Mono', ui-monospace, monospace;
   --gutter: clamp(16px, 5vw, 80px);
   --radius: 18px;
   --ease: cubic-bezier(.2,.8,.2,1);
@@ -359,8 +359,8 @@ em { font-style: italic; font-weight: 300; color: var(--green); }
 .hero-name {
   font-size: clamp(64px, 10.6vw, 190px);
   font-weight: 800;
-  line-height: .86;
-  letter-spacing: -0.065em;
+  line-height: .92;
+  letter-spacing: -0.05em;
   margin-left: -0.05em;
   margin-bottom: clamp(28px, 3.5vw, 48px);
 }
@@ -700,7 +700,7 @@ em { font-style: italic; font-weight: 300; color: var(--green); }
 .service-num {
   font-size: 72px;
   font-weight: 800;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.045em;
   line-height: 1;
   color: transparent;
   -webkit-text-stroke: 1px var(--line-strong);
@@ -736,13 +736,13 @@ em { font-style: italic; font-weight: 300; color: var(--green); }
   filter: blur(40px);
   pointer-events: none;
 }
-.contact > * { position: relative; }
+.contact > :not(.contact-glow) { position: relative; }
 .contact-title {
   margin: 20px 0 28px;
   font-size: clamp(60px, 13vw, 200px);
   font-weight: 800;
   line-height: .88;
-  letter-spacing: -0.065em;
+  letter-spacing: -0.05em;
 }
 .contact-sub {
   max-width: 560px;
