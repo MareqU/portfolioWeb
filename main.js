@@ -249,6 +249,122 @@ const bugHunt = (() => {
   };
 })();
 
+// ───────────── czech-test-data (my library, loaded from npm on demand) ─────────────
+// Major version pinned: new identifiers (e.g. VIN in 1.1) show up here without touching the site.
+const CTD_URL = 'https://cdn.jsdelivr.net/npm/czech-test-data@1/+esm';
+const CTD_IDS = {
+  birthNumber: ['Birth number', 'Rodné číslo'],
+  ico: ['IČO', 'IČO'],
+  dic: ['DIČ', 'DIČ'],
+  bankAccount: ['Bank account', 'Číslo účtu'],
+  iban: ['IBAN', 'IBAN'],
+  phone: ['Phone', 'Telefon'],
+  postalCode: ['Postal code', 'PSČ'],
+  ean: ['EAN', 'EAN'],
+  eic: ['EIC', 'EIC'],
+  vin: ['VIN', 'VIN'],
+};
+const CTD_KINDS = { valid: ['Valid', 'Platná'], edge: ['Edge case', 'Hraniční'], invalid: ['Invalid', 'Nevalidní'] };
+let ctdPromise = null;
+const loadCtd = () => (ctdPromise ??= import(CTD_URL).then(m => m.createCz({ seed: Math.floor(Math.random() * 2 ** 31) })));
+const pick = list => list[Math.floor(Math.random() * list.length)];
+
+// One generated value with the call that made it and what the library's own validator says about it
+function ctdGenerate(cz, id, kind) {
+  const gen = cz[id];
+  const variant = kind === 'valid' ? null : pick(gen[`${kind}Variants`]);
+  const value = variant ? gen[kind](variant) : gen();
+  return { id, kind, variant, value, call: `cz.${id}${variant ? `.${kind}('${variant}')` : '()'}`, check: cz.validate[id](value) };
+}
+const ctdCheckHtml = r => (r.check.valid
+  ? '<span class="t-pass-text">{ valid: true }</span>'
+  : `<span class="t-fail-text">{ valid: false, reason: '${esc(r.check.reason)}' }</span>`);
+
+const ctdCard = $('ctd');
+if (ctdCard) initCtdDemo();
+
+function initCtdDemo() {
+  const ids = $('ctdIds');
+  const kinds = $('ctdKinds');
+  const call = $('ctdCall');
+  const value = $('ctdValue');
+  const check = $('ctdCheck');
+  const again = $('ctdAgain');
+  const note = $('ctdNote');
+  const state = { id: 'ico', kind: 'valid' };
+  let cz = null;
+
+  function chips(container, entries, key) {
+    container.innerHTML = entries.map(([k, labels]) =>
+      `<button class="ctd-chip" type="button" role="radio" data-${key}="${k}" aria-checked="${state[key] === k}"${cz ? '' : ' disabled'}>${esc(t(...labels))}</button>`).join('');
+  }
+  function renderChips() {
+    const available = Object.entries(CTD_IDS).filter(([id]) => !cz || cz[id]);
+    chips(ids, available, 'id');
+    chips(kinds, Object.entries(CTD_KINDS), 'kind');
+  }
+  function generate() {
+    if (!cz) return;
+    const r = ctdGenerate(cz, state.id, state.kind);
+    call.textContent = r.call;
+    value.textContent = r.value;
+    check.innerHTML = `validate.${esc(r.id)}(…) → ${ctdCheckHtml(r)}`;
+  }
+
+  ids.addEventListener('click', e => {
+    const btn = e.target.closest('[data-id]');
+    if (!btn) return;
+    state.id = btn.dataset.id;
+    renderChips();
+    generate();
+  });
+  kinds.addEventListener('click', e => {
+    const btn = e.target.closest('[data-kind]');
+    if (!btn) return;
+    state.kind = btn.dataset.kind;
+    renderChips();
+    generate();
+  });
+  again.addEventListener('click', generate);
+  value.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(value.textContent);
+      toast(t(`Copied ${value.textContent}`, `Zkopírováno ${value.textContent}`));
+    } catch {}
+  });
+  langListeners.push(renderChips);
+
+  ctdCard.classList.add('is-loading');
+  again.disabled = true;
+  renderChips();
+
+  const start = () => loadCtd().then(instance => {
+    cz = instance;
+    ctdCard.classList.remove('is-loading');
+    again.disabled = false;
+    renderChips();
+    generate();
+  }).catch(() => {
+    ctdCard.classList.remove('is-loading');
+    ctdCard.classList.add('is-failed');
+    $('ctdBadge').textContent = 'offline';
+    note.innerHTML = t(
+      'Couldn’t load the library from npm. Try <a href="https://testovacidata.cz" target="_blank" rel="noopener">testovacidata.cz</a>.',
+      'Knihovnu se nepodařilo načíst z npm. Zkuste <a href="https://testovacidata.cz" target="_blank" rel="noopener">testovacidata.cz</a>.'
+    );
+  });
+
+  // Fetch the library only once the card is close to the viewport
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      if (entries.some(e => e.isIntersecting)) { io.disconnect(); start(); }
+    }, { rootMargin: '600px 0px' });
+    io.observe(ctdCard);
+  } else {
+    start();
+  }
+}
+
 // ───────────── Interactive terminal ─────────────
 const terminal = $('terminal');
 if (terminal) initTerminal();
@@ -329,8 +445,8 @@ function initTerminal() {
 
   const files = {
     'about.md': () => t(
-      '# Marek Urbaník\nQA engineer from Prague, mostly test automation\n(Playwright, Cypress, TypeScript). Currently learning security testing.',
-      '# Marek Urbaník\nQA engineer z Prahy, hlavně automatizace testů\n(Playwright, Cypress, TypeScript). Teď se učím security testing.'
+      '# Marek Urbaník\nQA engineer from Prague, mostly test automation\n(Playwright, Cypress, TypeScript).',
+      '# Marek Urbaník\nQA engineer z Prahy, hlavně automatizace testů\n(Playwright, Cypress, TypeScript).'
     ),
     'stack.json': () => JSON.stringify({
       primary: ['Playwright', 'Cypress', 'TypeScript', 'GitLab CI/CD'],
@@ -338,7 +454,7 @@ function initTerminal() {
     }, null, 2),
     'contact.txt': () => 'email:    marekurbanik@icloud.com\nlinkedin: linkedin.com/in/marek-urbaník-software-testing\ngithub:   github.com/MareqU',
   };
-  const sections = ['about', 'stack', 'services', 'github', 'contact'];
+  const sections = ['about', 'stack', 'services', 'projects', 'contact'];
 
   const commands = {
     help: () => print(t(
@@ -347,6 +463,7 @@ function initTerminal() {
 <span class="t-k">stack</span>         tools I work with
 <span class="t-k">ls</span>, <span class="t-k">cat</span> &lt;file&gt; browse files
 <span class="t-k">cd</span> &lt;section&gt;  jump to a section
+<span class="t-k">ctd</span> [id]      Czech test data, live from npm
 <span class="t-k">contact</span>       get in touch
 <span class="t-k">github</span>        open GitHub profile
 <span class="t-k">bugs</span>          how many bugs you've found
@@ -358,6 +475,7 @@ function initTerminal() {
 <span class="t-k">stack</span>         nástroje, se kterými pracuji
 <span class="t-k">ls</span>, <span class="t-k">cat</span> &lt;soubor&gt; procházení souborů
 <span class="t-k">cd</span> &lt;sekce&gt;     přejít na sekci
+<span class="t-k">ctd</span> [id]      česká testovací data, živě z npm
 <span class="t-k">contact</span>       kontakt
 <span class="t-k">github</span>        otevřít profil na GitHubu
 <span class="t-k">bugs</span>          kolik bugů už máte
@@ -411,6 +529,10 @@ Nové projekty teď neberu. Kontakt najdete přes <span class="t-k">contact</spa
       print(`${t('Bug hunt', 'Bug hunt')}: ${found.length}/${bugHunt.total}\n${rows.join('\n')}${found.length < bugHunt.total ? `\n<span class="t-dim">${t('Hint: they are hiding in plain sight.', 'Nápověda: jsou přímo na očích.')}</span>` : ''}`);
     },
     test: () => rerun(),
+    ctd: args => czechTestData(args),
+    npx: args => (args[0] === 'czech-test-data'
+      ? czechTestData(args.slice(1))
+      : print(t('npx: only <span class="t-k">npx czech-test-data</span> is installed here.', 'npx: tady je nainstalované jen <span class="t-k">npx czech-test-data</span>.'))),
     lang: ([l]) => {
       if (l !== 'cs' && l !== 'en') return print(`${t('Current language', 'Aktuální jazyk')}: ${lang()} — ${t('use', 'použijte')} <span class="t-k">lang cs</span> / <span class="t-k">lang en</span>`);
       setLang(l);
@@ -432,8 +554,30 @@ Nové projekty teď neberu. Kontakt najdete přes <span class="t-k">contact</spa
     coffee: () => print(t('☕ Brewing… done. Tests still green.', '☕ Vařím… hotovo. Testy jsou pořád zelené.')),
     vim: () => print(t("This isn't that kind of terminal. :q", 'Tohle není ten typ terminálu. :q')),
   };
+  // ctd                 → one valid value of every identifier
+  // ctd <id> [kind]     → one value; kind is valid (default), edge or invalid
+  async function czechTestData([rawId, rawKind = 'valid']) {
+    const id = rawId && Object.keys(CTD_IDS).find(k => k.toLowerCase() === rawId.toLowerCase());
+    const kind = rawKind.toLowerCase();
+    if (rawId && !id) return print(`ctd: ${t('unknown identifier', 'neznámý identifikátor')} ${esc(rawId)}. ${t('Try', 'Zkuste')}: ${Object.keys(CTD_IDS).join(', ')}`);
+    if (!CTD_KINDS[kind]) return print(`ctd: ${t('unknown kind', 'neznámý druh')} ${esc(rawKind)}. ${t('Try', 'Zkuste')}: valid, edge, invalid`);
+    let cz;
+    try {
+      cz = await loadCtd();
+    } catch {
+      return print(`<span class="t-fail-text">ctd: ${t('could not load the library from npm', 'knihovnu se nepodařilo načíst z npm')}</span>`);
+    }
+    if (id && !cz[id]) return print(`ctd: ${esc(id)} ${t('is not on npm yet', 'na npm ještě není')}`);
+    if (!id) {
+      const rows = Object.keys(CTD_IDS).filter(k => cz[k]).map(k => `${k.padEnd(12)} <span class="t-k">${esc(cz[k]())}</span>`);
+      return print(`${rows.join('\n')}\n<span class="t-dim">${t('Try', 'Zkuste')} ctd ico invalid · testovacidata.cz</span>`);
+    }
+    const r = ctdGenerate(cz, id, kind);
+    print(`<span class="t-dim">${esc(r.call)}</span>\n<span class="t-k">${esc(r.value)}</span>  ${ctdCheckHtml(r)}`);
+  }
+
   const aliases = {
-    '?': 'help', cls: 'clear', nano: 'vim', emacs: 'vim', email: 'contact', mail: 'contact',
+    '?': 'help', cls: 'clear', 'czech-test-data': 'ctd', nano: 'vim', emacs: 'vim', email: 'contact', mail: 'contact',
     'npm test': 'test', 'npx playwright test': 'test', 'npx playwright test marek.spec.ts': 'test',
   };
 
@@ -474,6 +618,7 @@ Nové projekty teď neberu. Kontakt najdete přes <span class="t-k">contact</spa
         : parts[0] === 'cat' ? Object.keys(files)
         : parts[0] === 'cd' ? sections
         : parts[0] === 'lang' ? ['cs', 'en']
+        : parts[0] === 'ctd' || parts[0] === 'czech-test-data' ? (parts.length === 2 ? Object.keys(CTD_IDS) : Object.keys(CTD_KINDS))
         : parts[0] === 'bugs' ? ['reset'] : [];
       const last = parts[parts.length - 1];
       const matches = options.filter(o => o.startsWith(last));
@@ -515,22 +660,14 @@ Nové projekty teď neberu. Kontakt najdete přes <span class="t-k">contact</spa
 }
 
 // ───────────── GitHub activity ─────────────
-const ghRepos = $('ghRepos');
-if (ghRepos) initGitHub();
+// Project cards are hand-picked in the HTML; GitHub only fills in the latest activity and "updated …"
+const ghPulse = $('ghPulse');
+if (ghPulse) initGitHub();
 
 function initGitHub() {
   const USER = 'MareqU';
-  const pulse = $('ghPulse');
-  // Friendlier descriptions than the raw GitHub ones (realworld-app is a fork, its upstream description is misleading)
-  const DESCRIPTIONS = {
-    'czech-test-data': ['Czech test data for automated tests: rodné číslo, IČO, DIČ, IBAN, SPZ, VIN and more, including edge cases. TypeScript, zero dependencies.', 'Česká testovací data pro automatizované testy: rodné číslo, IČO, DIČ, IBAN, SPZ, VIN a další, včetně okrajových případů. TypeScript, bez závislostí.'],
-    'realworld-app': ['AI-powered Playwright test framework with an autonomous QA agent.', 'Playwright framework s autonomním AI agentem pro QA.'],
-    carResearch: ['Claude Code agent that searches Czech car marketplaces for used cars.', 'Agent v Claude Code, který hledá ojetá auta na českých autobazarech.'],
-    portfolioWeb: ['This website, hand-written in HTML, CSS and JavaScript.', 'Tento web, napsaný ručně v HTML, CSS a JavaScriptu.'],
-    chatApp: ['Real-time chat over WebSockets.', 'Chat v reálném čase přes WebSockety.'],
-  };
+  const cards = document.querySelectorAll('[data-repo]');
   const LANG_COLORS = { TypeScript: '#3178c6', JavaScript: '#f1e05a', HTML: '#e34c26', CSS: '#663399', Python: '#3572a5', Shell: '#89e051' };
-  const repoIcon = '<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"/></svg>';
 
   let repos = null;
   let events = [];
@@ -581,52 +718,35 @@ function initGitHub() {
 
   function render() {
     if (failed) {
-      pulse.textContent = t('GitHub is not responding right now.', 'GitHub teď neodpovídá.');
-      ghRepos.innerHTML = `<p class="gh-error">${t('Couldn’t load repositories.', 'Repozitáře se nepodařilo načíst.')} <a href="https://github.com/${USER}" target="_blank" rel="noopener">github.com/${USER} ↗</a></p>`;
+      ghPulse.innerHTML = `${t('GitHub is not responding right now.', 'GitHub teď neodpovídá.')} <a href="https://github.com/${USER}" target="_blank" rel="noopener">github.com/${USER} ↗</a>`;
       return;
     }
     if (!repos) return;
 
     const latest = events[0];
     if (latest) {
-      pulse.innerHTML = `${t('Last activity', 'Poslední aktivita')}: ${describeEvent(latest)} · ${ago(latest.created_at)}`;
+      ghPulse.innerHTML = `${t('Last activity', 'Poslední aktivita')}: ${describeEvent(latest)} · ${ago(latest.created_at)}`;
     } else if (repos[0]) {
-      pulse.innerHTML = `${t('Last push', 'Poslední push')}: <b>${esc(repos[0].name)}</b> · ${ago(repos[0].pushed_at)}`;
+      ghPulse.innerHTML = `${t('Last push', 'Poslední push')}: <b>${esc(repos[0].name)}</b> · ${ago(repos[0].pushed_at)}`;
     }
 
-    // Feature the latest repo when it fills the last grid row (5 repos → 2+1 / 3)
-    const feature = repos.length % 3 === 2;
-    ghRepos.innerHTML = repos.map((r, i) => {
-      const desc = DESCRIPTIONS[r.name] ? t(...DESCRIPTIONS[r.name]) : (r.description || t('No description.', 'Bez popisu.'));
+    // Live language and "updated …" on the hand-picked cards; the static HTML stays if a repo is missing
+    cards.forEach(card => {
+      const r = repos.find(x => x.name === card.dataset.repo);
+      const meta = card.matches('.gh-repo-meta') ? card : card.querySelector('.gh-repo-meta');
+      if (!r || !meta) return;
       const language = r.language ? `<span class="gh-lang"><i style="--c:${LANG_COLORS[r.language] || 'var(--muted)'}"></i>${esc(r.language)}</span>` : '';
-      return `<a class="gh-repo spot${feature && i === 0 ? ' gh-repo-featured' : ''}" href="${esc(r.html_url)}" target="_blank" rel="noopener">
-        <span class="gh-repo-name">${repoIcon}${esc(r.name)}</span>
-        <span class="gh-repo-desc">${esc(desc.trim())}</span>
-        <span class="gh-repo-meta">${language}<span>${t('updated', 'aktualizováno')} ${ago(r.pushed_at)}</span>${r.fork ? '<span class="gh-fork">fork</span>' : ''}</span>
-      </a>`;
-    }).join('');
-
-    if (finePointer) {
-      ghRepos.querySelectorAll('.spot').forEach(el => {
-        el.addEventListener('pointermove', e => {
-          const rect = el.getBoundingClientRect();
-          el.style.setProperty('--mx', `${e.clientX - rect.left}px`);
-          el.style.setProperty('--my', `${e.clientY - rect.top}px`);
-        });
-      });
-    }
+      meta.innerHTML = `${language}<span>${t('updated', 'aktualizováno')} ${ago(r.pushed_at)}</span>${r.fork ? '<span class="gh-fork">fork</span>' : ''}`;
+    });
   }
 
   async function load() {
     try {
       const [repoData, eventData] = await Promise.all([
-        ghFetch(`/users/${USER}/repos?sort=pushed&per_page=12`),
+        ghFetch(`/users/${USER}/repos?sort=pushed&per_page=30`),
         ghFetch(`/users/${USER}/events/public?per_page=10`).catch(() => []),
       ]);
-      repos = repoData
-        .filter(r => !r.archived)
-        .sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at))
-        .slice(0, 6);
+      repos = repoData.sort((a, b) => new Date(b.pushed_at) - new Date(a.pushed_at));
       events = eventData;
     } catch {
       failed = true;
@@ -644,7 +764,7 @@ function initGitHub() {
         load();
       }
     }, { rootMargin: '600px 0px' });
-    io.observe(ghRepos);
+    io.observe(ghPulse);
   } else {
     load();
   }

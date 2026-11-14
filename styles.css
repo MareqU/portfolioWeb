@@ -867,6 +867,96 @@ a.gh-repo:hover { transform: translateY(-4px); border-color: var(--line-strong);
 .gh-error { grid-column: 1 / -1; font-family: var(--mono); font-size: 13px; color: var(--muted); }
 .gh-error a { color: var(--green); }
 
+/* ───────────── PROJECT ───────────── */
+/* Featured project: one card in the same style as the repo cards below it */
+.project {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: clamp(32px, 5vw, 72px);
+  align-items: center;
+  padding: clamp(24px, 4vw, 48px);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(160deg, rgba(61,255,160,0.07), transparent 55%), var(--bg);
+}
+.project-text p {
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--text-soft);
+  margin-bottom: 18px;
+  max-width: 520px;
+}
+.project-text strong { color: var(--text); font-weight: 600; }
+.project-name {
+  font-family: var(--mono);
+  font-size: clamp(28px, 3.4vw, 44px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+}
+.project-meta { margin: 14px 0 28px; }
+.project-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+.project-more { margin-top: 14px; }
+.gh-repo-all .gh-repo-name { color: var(--green); }
+
+/* Live demo card */
+.ctd {
+  border: 1px solid var(--line-strong);
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: 0 30px 80px -40px rgba(0,0,0,0.9);
+  overflow: hidden;
+}
+.ctd-body { padding: 22px 22px 24px; display: flex; flex-direction: column; }
+.ctd-label { font-family: var(--mono); font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 10px; }
+.ctd-ids, .ctd-kinds { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 22px; }
+.ctd-chip {
+  font: 500 12px var(--mono);
+  color: var(--text-soft);
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: color .2s, border-color .2s, background .2s;
+}
+.ctd-chip:hover { color: var(--text); border-color: var(--line-strong); }
+.ctd-chip[aria-checked="true"] { color: var(--bg); background: var(--text); border-color: var(--text); }
+.ctd-kinds .ctd-chip[data-kind="valid"][aria-checked="true"] { background: var(--green); border-color: var(--green); }
+.ctd-kinds .ctd-chip[data-kind="edge"][aria-checked="true"] { background: var(--amber); border-color: var(--amber); }
+.ctd-kinds .ctd-chip[data-kind="invalid"][aria-checked="true"] { background: var(--red); border-color: var(--red); }
+.ctd-chip:disabled { opacity: .45; cursor: default; }
+
+.ctd-out {
+  display: flex; flex-direction: column; gap: 10px;
+  padding: 22px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.ctd-call, .ctd-check { font-family: var(--mono); font-size: 12px; color: var(--muted); word-break: break-word; }
+.ctd-value {
+  align-self: flex-start;
+  max-width: 100%;
+  font: 700 clamp(24px, 3vw, 36px) var(--mono);
+  letter-spacing: -0.02em;
+  color: var(--text);
+  background: none;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  word-break: break-all;
+  cursor: copy;
+  transition: color .2s;
+}
+.ctd-value:hover { color: var(--green); }
+.ctd.is-loading .ctd-value { opacity: .4; }
+.ctd-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; margin-top: 20px; }
+.ctd-again { padding: 10px 18px; font-size: 14px; cursor: pointer; font-family: inherit; }
+.ctd-again:disabled { opacity: .45; cursor: default; transform: none; }
+.ctd-note { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+.ctd-note a { color: var(--green); }
+.ctd.is-failed .terminal-badge { color: var(--red); border-color: rgba(255,92,108,0.3); }
+
 /* ───────────── BUG HUNT ───────────── */
 .bug { cursor: default; border-radius: 4px; transition: background .3s, box-shadow .3s; }
 .bug .bug-right { display: none; }
@@ -981,6 +1071,7 @@ a.gh-repo:hover { transform: translateY(-4px); border-color: var(--line-strong);
   .lang-toggle { margin-left: auto; }
   .nav-burger { display: flex; margin-left: 0; }
   .about-grid { grid-template-columns: 1fr; }
+  .project { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 640px) {
@@ -1006,6 +1097,9 @@ a.gh-repo:hover { transform: translateY(-4px); border-color: var(--line-strong);
   .service { display: flex; padding: 24px; }
   .service-num { font-size: 56px; margin-bottom: 4px; }
   .now-card { padding: 22px; }
+  .ctd-body { padding: 18px; }
+  .project { padding: 20px; }
+  .project-text p { font-size: 16px; }
   .footer { flex-direction: column; padding-bottom: 80px; }
   .gh-repos { grid-template-columns: 1fr; }
   .gh-repo { min-height: 0; }

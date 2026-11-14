@@ -23,7 +23,7 @@
     <a href="#about"><span lang="en">About</span><span lang="cs">O mně</span></a>
     <a href="#stack"><span lang="en">Stack</span><span lang="cs">Nástroje</span></a>
     <a href="#services"><span lang="en">Services</span><span lang="cs">Služby</span></a>
-    <a href="#github">GitHub</a>
+    <a href="#projects"><span lang="en">Projects</span><span lang="cs">Projekty</span></a>
     <a href="#contact"><span lang="en">Get in touch</span><span lang="cs">Ozvěte se</span></a>
   </nav>
   <button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language / Přepnout jazyk">
@@ -42,7 +42,7 @@
   <a href="#about"><i>01</i><span lang="en">About</span><span lang="cs">O mně</span></a>
   <a href="#stack"><i>02</i><span lang="en">Stack</span><span lang="cs">Nástroje</span></a>
   <a href="#services"><i>03</i><span lang="en">Services</span><span lang="cs">Služby</span></a>
-  <a href="#github"><i>04</i>GitHub</a>
+  <a href="#projects"><i>04</i><span lang="en">Projects</span><span lang="cs">Projekty</span></a>
   <a href="#contact"><i>05</i><span lang="en">Get in touch</span><span lang="cs">Ozvěte se</span></a>
   <div class="nav-mobile-status"><span class="status-dot"></span><span lang="en">Fully booked · Fakturoid &amp; Pojišťovna VZP</span><span lang="cs">Plně vytížený · Fakturoid a Pojišťovna VZP</span></div>
 </div>
@@ -80,7 +80,7 @@
           <strong>co se má testovat</strong> a jak to celé uspořádat, a kontroluju, že testy opravdu něco ověřují.
         </p>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#github"><span lang="en">View my work</span><span lang="cs">Ukázky práce</span> <span aria-hidden="true">→</span></a>
+          <a class="btn btn-primary" href="#projects"><span lang="en">View my work</span><span lang="cs">Ukázky práce</span> <span aria-hidden="true">→</span></a>
           <a class="btn btn-ghost" href="#terminal" id="tryTerminal"><span lang="en">Try the terminal</span><span lang="cs">Zkusit terminál</span></a>
         </div>
       </div>
@@ -133,10 +133,10 @@
   <div class="about-grid">
     <div class="about-text" data-reveal>
       <p class="about-lead" lang="en">
-        I'm a <strong>QA engineer</strong> based in Prague. I've been in testing for over three years, mostly automation.
+        I've been in testing for over three years, mostly automation.
       </p>
       <p class="about-lead" lang="cs">
-        Jsem <strong>QA engineer</strong> z Prahy. Testování se věnuju přes tři roky, hlavně automatizaci.
+        Testování se věnuju přes tři roky, hlavně automatizaci.
       </p>
       <p lang="en">
         These days I generate most of the code with <strong>AI agents</strong>. My part is deciding what to test,
@@ -147,12 +147,6 @@
         Většinu kódu dnes generuju pomocí <strong>AI agentů</strong>. Sám řeším,
         co testovat, jak testy uspořádat, aby se s nimi dalo pracovat i za pár let, a vygenerovaný kód
         kontroluju. AI totiž ráda napíše test, který projde, i když aplikace nefunguje.
-      </p>
-      <p lang="en">
-        I'm currently learning <strong>cybersecurity</strong> and want to bring it into my tests over time.
-      </p>
-      <p lang="cs">
-        Teď se učím <strong>kybernetickou bezpečnost</strong> a časem ji chci zapojit i do testů.
       </p>
 
       <div class="stats">
@@ -319,24 +313,82 @@
   </div>
 </section>
 
-<!-- GITHUB -->
-<section class="section section-alt" id="github">
+<!-- PROJECTS -->
+<section class="section section-alt" id="projects">
   <div class="section-head" data-reveal>
-    <span class="section-num">04 / GitHub</span>
-    <h2 class="section-title"><span lang="en">What’s on my <em>GitHub</em></span><span lang="cs">Co mám na <em>GitHubu</em></span></h2>
+    <span class="section-num">04 / <span lang="en">Projects</span><span lang="cs">Projekty</span></span>
+    <h2 class="section-title"><span lang="en">My <em>projects</em></span><span lang="cs">Moje <em>projekty</em></span></h2>
     <a class="section-link" href="https://github.com/MareqU" target="_blank" rel="noopener">github.com/MareqU ↗</a>
   </div>
 
-  <div class="gh" data-reveal>
+  <div data-reveal>
     <div class="gh-pulse">
       <span class="gh-pulse-dot"></span>
       <span id="ghPulse"><span lang="en">Loading data from GitHub…</span><span lang="cs">Načítám data z GitHubu…</span></span>
     </div>
-    <div class="gh-repos" id="ghRepos">
-      <div class="gh-repo gh-skeleton"></div>
-      <div class="gh-repo gh-skeleton"></div>
-      <div class="gh-repo gh-skeleton"></div>
+  </div>
+
+  <div class="project">
+    <div class="project-text" data-reveal>
+      <h3 class="project-name">czech-test-data</h3>
+      <div class="gh-repo-meta project-meta" data-repo="czech-test-data"><span class="gh-lang"><i style="--c:#3178c6"></i>TypeScript</span></div>
+      <p lang="en">
+        A generator of Czech test data: birth numbers, IČO, DIČ, bank accounts, IBAN and more.
+        Besides valid values it also gives edge cases and invalid ones, all in one place.
+      </p>
+      <p lang="cs">
+        Generátor českých testovacích dat: rodná čísla, IČO, DIČ, čísla účtů, IBAN a další.
+        Kromě platných hodnot umí i hraniční a nevalidní, vše na jednom místě.
+      </p>
+      <div class="project-actions">
+        <a class="btn btn-primary" href="https://testovacidata.cz" target="_blank" rel="noopener">testovacidata.cz <span aria-hidden="true">→</span></a>
+        <a class="btn btn-ghost" href="https://www.npmjs.com/package/czech-test-data" target="_blank" rel="noopener">npm ↗</a>
+        <a class="btn btn-ghost" href="https://github.com/MareqU/czech-test-data" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
     </div>
+
+    <div class="ctd" id="ctd" data-reveal>
+      <div class="terminal-bar">
+        <span class="terminal-dots"><i></i><i></i><i></i></span>
+        <span class="terminal-title">czech-test-data</span>
+        <span class="terminal-badge" id="ctdBadge">live</span>
+      </div>
+      <div class="ctd-body">
+        <div class="ctd-label"><span lang="en">Identifier</span><span lang="cs">Identifikátor</span></div>
+        <div class="ctd-ids" id="ctdIds" role="radiogroup" aria-label="Identifier / Identifikátor"></div>
+        <div class="ctd-label"><span lang="en">Value</span><span lang="cs">Hodnota</span></div>
+        <div class="ctd-kinds" id="ctdKinds" role="radiogroup" aria-label="Value / Hodnota"></div>
+
+        <div class="ctd-out" aria-live="polite">
+          <code class="ctd-call" id="ctdCall">cz.ico()</code>
+          <button class="ctd-value" id="ctdValue" type="button" title="Copy / Zkopírovat">74494066</button>
+          <code class="ctd-check" id="ctdCheck">validate.ico(…) → <span class="t-pass-text">{ valid: true }</span></code>
+        </div>
+
+        <div class="ctd-foot">
+          <button class="btn btn-ghost ctd-again" id="ctdAgain" type="button"><span lang="en">Generate another</span><span lang="cs">Vygenerovat další</span> <span aria-hidden="true">↻</span></button>
+          <p class="ctd-note" id="ctdNote"><span lang="en">Generated right in your browser.</span><span lang="cs">Generuje se přímo v prohlížeči.</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gh-repos project-more">
+    <a class="gh-repo spot" data-reveal data-repo="realworld-app" href="https://github.com/MareqU/realworld-app" target="_blank" rel="noopener">
+      <span class="gh-repo-name"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"/></svg>realworld-app</span>
+      <span class="gh-repo-desc"><span lang="en">AI-powered Playwright test framework with an autonomous QA agent.</span><span lang="cs">Playwright framework s autonomním AI agentem pro QA.</span></span>
+      <span class="gh-repo-meta"><span class="gh-lang"><i style="--c:#3178c6"></i>TypeScript</span><span class="gh-fork">fork</span></span>
+    </a>
+    <a class="gh-repo spot" data-reveal data-repo="carResearch" href="https://github.com/MareqU/carResearch" target="_blank" rel="noopener">
+      <span class="gh-repo-name"><svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"/></svg>carResearch</span>
+      <span class="gh-repo-desc"><span lang="en">Claude Code agent that searches Czech car marketplaces for used cars.</span><span lang="cs">Agent v Claude Code, který hledá ojetá auta na českých autobazarech.</span></span>
+      <span class="gh-repo-meta"></span>
+    </a>
+    <a class="gh-repo gh-repo-all spot" data-reveal href="https://github.com/MareqU" target="_blank" rel="noopener">
+      <span class="gh-repo-name">github.com/MareqU</span>
+      <span class="gh-repo-desc"><span lang="en">Everything else, including this website.</span><span lang="cs">Všechno ostatní, včetně tohoto webu.</span></span>
+      <span class="gh-repo-meta"><span lang="en">All repositories</span><span lang="cs">Všechny repozitáře</span> →</span>
+    </a>
   </div>
 </section>
 
@@ -366,7 +418,7 @@
 </main>
 
 <footer class="footer">
-  <span>© <span class="bug" data-bug="year"><span class="bug-wrong">2025</span><span class="bug-right">2026</span></span> Marek Urbaník — QA Engineer, <span lang="en">Prague</span><span lang="cs">Praha</span></span>
+  <span>© <span class="bug" data-bug="year"><span class="bug-wrong">2025</span><span class="bug-right">2026</span></span> Marek Urbaník</span>
   <span class="footer-run"><span class="t-pass-text">5 passed</span> · <span class="t-fail-text">1 failed</span> · availability</span>
 </footer>
 
